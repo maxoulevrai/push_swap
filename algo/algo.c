@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_rotate_instructions.c                      :+:      :+:    :+:   */
+/*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 18:16:38 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/06 18:46:42 by maleca           ###   ########.fr       */
+/*   Created: 2025/06/06 13:46:55 by maleca            #+#    #+#             */
+/*   Updated: 2025/06/06 13:48:23 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../push_swap.h"
+#include "../push_swap.h"
 
-void	reverse_rotate(t_stack **head, char print)
+void	launch_algo(t_stack stack_A, t_stack stack_B)
 {
-	if (!(*head) || !(*head)->prev)
-		return ;
-	*head = (*head)->prev;
-	if (print == 'A')
-		write(1, "rra\n", 4);
-	if (print == 'B')
-		write(1, "rrb\n", 4);
-}
-
-
-void	rrr(t_stack **stack_A, t_stack **stack_B)
-{
-	reverse_rotate(stack_A, 0);
-	reverse_rotate(stack_B, 0);
-	write(1, "rrr\n", 4);
+	
 }

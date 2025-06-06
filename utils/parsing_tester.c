@@ -6,11 +6,28 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 20:29:35 by maleca            #+#    #+#             */
-/*   Updated: 2025/05/26 22:27:24 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/06 13:56:52 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
+int	get_dbl_ll_size(t_stack **head)
+{
+	size_t	size;
+	t_stack	*p;
+
+	size = 0;
+	if (!(*head))
+		return (0);
+	p = (*head)->next;
+	while (p != (*head))
+	{
+		size++;
+		p = p->next;
+	}
+	return (size);
+}
 
 int	check_dbl(char **splited_args)
 {
@@ -168,6 +185,7 @@ int	main(int ac, char **av)
 		return (ft_putendl_fd("Error (too few arguments)", 2), 0);
 	stack_A = parse(av);
 	tmp = stack_A;
+	// printf("%d\n", get_dbl_ll_size(&stack_A));
 	while (tmp != NULL)
 	{
 		printf("%d\n", tmp->content);

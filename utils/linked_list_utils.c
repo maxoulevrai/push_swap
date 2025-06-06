@@ -6,79 +6,72 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 23:21:15 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/05 21:40:59 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/06 14:08:44 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	stack_clear(t_stack **lst)
+void	stack_clear(t_stack **head)
 {
 	t_stack	*tmp;
 
-	while ((*lst))
+	while ((*head))
 	{
-		tmp = (*lst)->next;
-		free((*lst));
-		(*lst) = tmp;
+		tmp = (*head)->next;
+		free((*head));
+		(*head) = tmp;
 	}
 }
 
-void	dbl_stack_addback(t_stack **lst, t_stack *new)
+void	dbl_stack_addback(t_stack **head, t_stack *new)
 {
 	t_stack	*tmp;
 
-	if (!*lst && !new)
+	if (!*head && !new)
 		return ;
-	if (!*lst)
+	if (!*head)
 	{
-		(*lst) = new;
+		(*head) = new;
 		return ;
 	}
-	tmp = (*lst);
+	tmp = (*head);
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new;
 	new->prev = tmp;
 }
 
-t_stack	*init_node(int value)
+int	get_dbl_ll_size(t_stack **head)
+{
+	size_t	size;
+	t_stack	*p;
+
+	size = 0;
+	if (!(*head))
+		return (0);
+	p = (*head)->next;
+	while (p != (*head))
+	{
+		size++;
+		p = p->next;
+	}
+	return (size);
+}
+
+t_stack	*init_node(char *value)
 {
 	t_stack	*node;
 
 	node = malloc(sizeof(t_stack));
-	node->content = value;
+	node->content = ft_atoi(value);
 	node->idx = 0;
 	node->pos = 0;
+	node->trgt = 0;
+	node->trgt_cost = 0;
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);
 }
 
-t_stack	*init_value(char **splited_args)
-{
-	t_stack	*head;
-	t_stack	*tmp;
-	size_t	i;
-	int 	pos;
-
-	head = NULL;
-	pos = get_dtab_len(splited_args);
-	i = 0;
-	while (splited_args[i])
-	{
-		tmp = init_node(splited_args[i++]);
-		if (!tmp)
-		{
-			if (head)
-				return (stack_clear(&head), NULL);
-			return (NULL);
-		}
-		tmp->pos = pos--;
-		dbl_stack_addback_(&head, tmp);
-	}
-	tmp->next = head;
-	head->prev = tmp;
-	return (head);
-}
 
