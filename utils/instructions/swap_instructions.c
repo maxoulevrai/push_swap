@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:00:20 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/06 18:47:04 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/07 19:27:11 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	swap(t_stack **head, char print)
 		write(1, "sb\n", 3);
 }
 
-void	ss(t_stack **stack_A, t_stack **stack_B)
+void	ss(t_stack **s_a, t_stack **s_b)
 {
-	swap(stack_A, 'A');
-	swap(stack_B, 'B');
+	swap(s_a, 'A');
+	swap(s_b, 'B');
 	write(1, "ss\n", 3);
 }

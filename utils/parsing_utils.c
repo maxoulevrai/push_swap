@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 18:04:50 by root              #+#    #+#             */
-/*   Updated: 2025/06/05 21:47:11 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/07 19:27:02 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static char	**join_n_split(char **av)
 t_stack	*parse(char **av)
 {
 	char	**splited_args;
-	t_stack	*stack_A;
+	t_stack	*s_a;
 	size_t	i;
 
 	if (!is_valid(&av[1]))
@@ -99,9 +99,9 @@ t_stack	*parse(char **av)
 	splited_args = join_n_split(av);
 	if (!splited_args)
 		return (NULL);
-	stack_A = init_value(splited_args);
-	if (!stack_A)
+	s_a = init_value(splited_args);
+	if (!s_a)
 		return (NULL);
 	free_dtab(splited_args);
-	return (stack_A);
+	return (s_a);
 }

@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 23:21:15 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/06 14:08:44 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/07 19:27:02 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	stack_clear(t_stack **head)
 	}
 }
 
-void	dbl_stack_addback(t_stack **head, t_stack *new)
+void	dbl_s_addback(t_stack **head, t_stack *new)
 {
 	t_stack	*tmp;
 

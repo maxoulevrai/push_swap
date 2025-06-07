@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 19:36:37 by root              #+#    #+#             */
-/*   Updated: 2025/06/06 16:43:57 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/07 19:27:11 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@ typedef struct s_stack
 	struct s_stack	*prev;
 }				t_stack;
 
+
+typedef struct s_ter
+{
+	size_t				t1;
+	size_t				t2;
+	size_t				len;
+	size_t				med;
+}				t_ter;
+
 // parsing
 t_stack	*parse(char **av);
 
@@ -36,21 +45,21 @@ void	get_idx(t_stack **head);
 
 // linked_list
 void	stack_clear(t_stack **lst);
-void	stack_addback(t_stack **lst, t_stack *new);
+void	s_addback(t_stack **lst, t_stack *new);
 size_t	get_dbl_ll_size(t_stack **head);
 
 // instructions
-void	push_a(t_stack **stack_A, t_stack **stack_B);
-void	push_b(t_stack **stack_A, t_stack **stack_B);
+void	push_a(t_stack **s_a, t_stack **s_b);
+void	push_b(t_stack **s_a, t_stack **s_b);
 
 void	swap(t_stack **head, char print);
-void	ss(t_stack **stack_A, t_stack **stack_B);
+void	ss(t_stack **s_a, t_stack **s_b);
 
 void	rotate(t_stack **head, char print);
-void	rr(t_stack **stack_A, t_stack **stack_B);
+void	rr(t_stack **s_a, t_stack **s_b);
 
 void	reverse_rotate(t_stack **head, char print);
-void	rrr(t_stack **stack_A, t_stack **stack_B);
+void	rrr(t_stack **s_a, t_stack **s_b);
 
 // algo
 void	tiny_sort(t_stack **head, char print);

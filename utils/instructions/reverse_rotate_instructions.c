@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 18:16:38 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/06 18:46:42 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/07 19:27:11 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	reverse_rotate(t_stack **head, char print)
 }
 
 
-void	rrr(t_stack **stack_A, t_stack **stack_B)
+void	rrr(t_stack **s_a, t_stack **s_b)
 {
-	reverse_rotate(stack_A, 0);
-	reverse_rotate(stack_B, 0);
+	reverse_rotate(s_a, 0);
+	reverse_rotate(s_b, 0);
 	write(1, "rrr\n", 4);
 }

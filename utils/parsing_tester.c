@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 20:29:35 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/06 13:56:52 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/07 19:27:02 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ static char	**join_n_split(char **av)
 	return (splited_args);
 }
 
-void	stack_addback(t_stack **lst, t_stack *new)
+void	s_addback(t_stack **lst, t_stack *new)
 {
 	t_stack	*tmp;
 
@@ -152,7 +152,7 @@ t_stack	*init(char **splited_args)
 		}
 		tmp->content = ft_atoi(splited_args[i++]);
 		tmp->next = NULL;
-		stack_addback(&head, tmp);
+		s_addback(&head, tmp);
 	}
 	return (head);
 }
@@ -160,7 +160,7 @@ t_stack	*init(char **splited_args)
 t_stack	*parse(char **av)
 {
 	char	**splited_args;
-	t_stack	*stack_A;
+	t_stack	*s_a;
 	size_t	i;
 
 	if (!is_valid(&av[1]))
@@ -169,41 +169,41 @@ t_stack	*parse(char **av)
 	splited_args = join_n_split(av);
 	if (!splited_args)
 		return (NULL);
-	stack_A = init(splited_args);
-	if (!stack_A)
+	s_a = init(splited_args);
+	if (!s_a)
 		return (NULL);
 	free_dtab(splited_args);
-	return (stack_A);
+	return (s_a);
 }
 
 int	main(int ac, char **av)
 {
-	t_stack	*stack_A;
+	t_stack	*s_a;
 	t_stack	*tmp;
 
 	if (ac == 1)
 		return (ft_putendl_fd("Error (too few arguments)", 2), 0);
-	stack_A = parse(av);
-	tmp = stack_A;
-	// printf("%d\n", get_dbl_ll_size(&stack_A));
+	s_a = parse(av);
+	tmp = s_a;
+	// printf("%d\n", get_dbl_ll_size(&s_a));
 	while (tmp != NULL)
 	{
 		printf("%d\n", tmp->content);
 		tmp = tmp->next;
 	}
-	// tmp = stack_A;
+	// tmp = s_a;
 	// while (tmp != NULL)
 	// {
 	// 	tmp->content += 1;
 	// 	tmp = tmp->next;
 	// }
-	// tmp = stack_A;
+	// tmp = s_a;
 	// while (tmp != NULL)
 	// {
 	// 	printf("%d\n", tmp->content);
 	// 	tmp = tmp->next;
 	// }
-	stack_clear(&stack_A);
+	stack_clear(&s_a);
 	return (0);
 	// if (!args)
 	// 	return (ft_putendl_fd("Error", 2), 0);
