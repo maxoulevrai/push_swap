@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 19:22:33 by root              #+#    #+#             */
-/*   Updated: 2025/06/07 19:27:11 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/07 21:08:52 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,3 +43,5 @@ int	main(int ac, char **av)
 	stack_clear(&s_a);
 	return (0);
 }
+
+// gestion 0 solo

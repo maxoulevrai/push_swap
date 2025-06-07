@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 19:36:37 by root              #+#    #+#             */
-/*   Updated: 2025/06/07 19:27:11 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/07 23:55:49 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #define PUSH_SWAP_H
 
 #include "lib/libft.h"
+
+# define ABS(value) ((value < 0) ? (value * -1) : value)
 
 typedef struct s_stack
 {

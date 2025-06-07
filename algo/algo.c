@@ -6,18 +6,35 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:46:55 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/07 19:27:11 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/08 00:06:05 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
+t_stack	*find_best_move(t_stack **s_a, t_stack **s_b)
+{
+	t_stack *p_b;
+	t_stack	*min;
+
+	get_target(&s_a, &s_b);
+	get_target_cost(&s_a, &s_b);
+	p_b = *s_b;
+	min = *s_b;
+	while (1)
+	{
+		if (p_b->trgt_cost < min->trgt_cost)
+			min = p_b;
+		p_b = p_b->next;
+		if (p_b == s_b)
+			break ;
+	}
+	return (min);
+}
 
 void	move_a_optimize(t_stack **s_a, t_stack **s_b)
 {
-	set_target(&s_a, &s_b);
-	get_target_cost(&s_a, &s_b);
-
+	find_best_move(&s_a, &s_b);
 
 }
 

@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:56:31 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/07 19:27:02 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/07 21:49:57 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,20 +128,21 @@ int	main(void)
 	while (1)
 	{
 		printf("%d\n", p->content);
+		printf("%d\n", p->pos);
 		printf("\n");
 		p = p->next;
 		if (p == head)
 			break;
 	}
-	tiny_sort(&head, 'A');
-	p = head;
-	while (1)
-	{
-		printf("%d\n", p->content);
-		printf("\n");
-		p = p->next;
-		if (p == head)
-			break;
-	}
+	// tiny_sort(&head, 'A');
+	// p = head;
+	// while (1)
+	// {
+	// 	printf("%d\n", p->content);
+	// 	printf("\n");
+	// 	p = p->next;
+	// 	if (p == head)
+	// 		break;
+	// }
 	return (0);
 }

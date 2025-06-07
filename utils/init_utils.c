@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 21:48:36 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/07 19:27:02 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/07 21:55:11 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,22 @@ void	get_idx(t_stack **head)
 		}
 		if (min)
 			min->idx = idx++;
+	}
+}
+void	update_pos(t_stack **head)
+{
+	int		pos;
+	t_stack	*p;
+
+	pos = 1;
+	p = *head;
+	while (1)
+	{
+		p->pos = pos;
+		p = p->next;
+		pos++;
+		if (p == *head)
+			return ;
 	}
 }
 

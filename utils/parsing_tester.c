@@ -6,13 +6,13 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 20:29:35 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/07 19:27:02 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/07 21:02:10 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	get_dbl_ll_size(t_stack **head)
+size_t	get_dbl_ll_size(t_stack **head)
 {
 	size_t	size;
 	t_stack	*p;
