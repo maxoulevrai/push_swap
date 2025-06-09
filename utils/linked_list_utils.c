@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 23:21:15 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/07 19:27:02 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/09 05:17:16 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,10 @@ t_stack	*init_node(char *value)
 	t_stack	*node;
 
 	node = malloc(sizeof(t_stack));
-	node->content = ft_atoi(value);
+	node->value = ft_atoi(value);
 	node->idx = 0;
 	node->pos = 0;
-	node->trgt = 0;
-	node->trgt_cost = 0;
+	node->trgt = NULL;
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);

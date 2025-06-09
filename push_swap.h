@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 19:36:37 by root              #+#    #+#             */
-/*   Updated: 2025/06/07 23:55:49 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/09 05:38:18 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 
 typedef struct s_stack
 {
-	int				content;
+	int				value;
 	int				idx;
 	int				pos;
-	int				trgt;
+	struct s_stack	*trgt;
 	int				trgt_cost;
 	struct s_stack	*next;
 	struct s_stack	*prev;
@@ -42,13 +42,15 @@ t_stack	*parse(char **av);
 
 // init
 t_stack	*init_value(char **splited_args);
-t_stack	*init_node(char *value);
+t_stack	*update_pos(t_stack **head);
 void	get_idx(t_stack **head);
 
 // linked_list
+t_stack	*init_node(char *value);
+size_t	get_dbl_ll_size(t_stack **head);
 void	stack_clear(t_stack **lst);
 void	s_addback(t_stack **lst, t_stack *new);
-size_t	get_dbl_ll_size(t_stack **head);
+
 
 // instructions
 void	push_a(t_stack **s_a, t_stack **s_b);
@@ -64,7 +66,18 @@ void	reverse_rotate(t_stack **head, char print);
 void	rrr(t_stack **s_a, t_stack **s_b);
 
 // algo
+void	launch_algo(t_stack **s_a, t_stack **s_b);
+void	move_b_optimize(t_stack **s_a, t_stack **s_b);
+void	move_a_optimize(t_stack **s_a, t_stack **s_b, t_ter **ter);
+t_stack	*find_best_move(t_stack **s_a, t_stack **s_b, t_ter **ter);
+int		only_t3(t_stack **head, size_t t2);
+void	get_tertiles(t_stack **head,t_ter **ter);
+void	get_target(t_stack **s_a, t_stack **s_b);
 void	tiny_sort(t_stack **head, char print);
+int		is_sorted(t_stack **head, t_ter *ter);
+void	rra_rb(t_stack **best);
+void	ra_rb(t_stack **best);
+void	ft_finguin(t_stack **s_a);
 
 
 

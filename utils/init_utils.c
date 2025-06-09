@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 21:48:36 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/07 21:55:11 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/09 05:21:13 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	get_idx(t_stack **head)
 		{
 			if (tmp->idx == -1)
 			{
-				if (!min || tmp->content < min->content)
+				if (!min || tmp->value < min->value)
 					min = tmp;
 			}
 			tmp = tmp->next;
@@ -40,7 +40,7 @@ void	get_idx(t_stack **head)
 			min->idx = idx++;
 	}
 }
-void	update_pos(t_stack **head)
+t_stack	*update_pos(t_stack **head)
 {
 	int		pos;
 	t_stack	*p;
@@ -53,7 +53,7 @@ void	update_pos(t_stack **head)
 		p = p->next;
 		pos++;
 		if (p == *head)
-			return ;
+			return (*head);
 	}
 }
 
@@ -73,11 +73,11 @@ t_stack	*init_value(char **splited_args)
 		if (!tmp)
 		{
 			if (head)
-				return (stack_clear(&head), NULL);
+				return (stack_clear(head), NULL);
 			return (NULL);
 		}
 		tmp->pos = pos--;
-		dbl_s_addback(&head, tmp);
+		dbl_s_addback(head, tmp);
 	}
 	tmp->next = head;
 	head->prev = tmp;
