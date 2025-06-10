@@ -6,50 +6,22 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:56:31 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/07 21:49:57 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/10 22:03:41 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	tiny_sort(t_stack **head, char print)
-{
-	int	first;
-	int	second;
-	int	third;
-
-	first = (*head)->content;
-	second = (*head)->next->content;
-	third = (*head)->prev->content;
-	if ((third < second) && (second < first))
-	{
-		swap(head, print);
-		reverse_rotate(head, print);
-	}
-	else if ((first < third) && (third < second))
-	{
-		reverse_rotate(head, print);
-		swap(head, print);
-	}
-	else if ((second < first) && (first < third))
-		swap(head, print);
-	else if ((third < first) && (first < second))
-		reverse_rotate(head, print);
-	else if ((second < third) && (third < first))
-		rotate(head, print);
-}
-
 
 t_stack	*init_node(char *value)
 {
 	t_stack	*node;
 
 	node = malloc(sizeof(t_stack));
-	node->content = ft_atoi(value);
+	node->value = ft_atoi(value);
 	node->idx = -1;
 	node->pos = -1;
-	node->trgt = -1;
 	node->trgt_cost = -1;
+	node->trgt = NULL;
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);
@@ -115,30 +87,51 @@ t_stack	*init_value(char **splited_args)
 
 int	main(void)
 {
-	t_stack	*head;
-	t_stack	*p;
-	char	*dtab[4];
+	t_stack	*s_a;
+	t_stack	*s_b;
+	t_stack	*p_a;
+	t_stack	*p_b;
+	char	*dtab1[5];
+	// char	*dtab2[5];
 
-	dtab[0] = "3";
-	dtab[1] = "2";
-	dtab[2] = "1";
-	dtab[3] = NULL;
-	head = init_value(dtab);
-	p = head;
+	dtab1[0] = "3";
+	dtab1[1] = "-1";
+	dtab1[2] = "25";
+	dtab1[3] = "15";
+	dtab1[4] = NULL;
+	// dtab2[0] = "2";
+	// dtab2[1] = "-5";
+	// dtab2[2] = "21";
+	// dtab2[3] = "4";
+	// dtab2[4] = NULL;
+	s_a = init_value(dtab1);
+	move_b_optimize(&s_a, &s_b);
+	// s_b = init_value(dtab2);
+	p_a = s_a;
+	p_b = s_b;
 	while (1)
 	{
-		printf("%d\n", p->content);
-		printf("%d\n", p->pos);
+		printf("%d\n", p_a->value);
 		printf("\n");
-		p = p->next;
-		if (p == head)
+		p_a = p_a->next;
+		if (p_a == s_a)
 			break;
 	}
+	while (1)
+	{
+		printf("%d\n", p_b->value);
+		printf("\n");
+		p_b = p_b->next;
+		if (p_b == s_b)
+			break;
+	}
+	free(s_a);
+	free(s_b);
 	// tiny_sort(&head, 'A');
 	// p = head;
 	// while (1)
 	// {
-	// 	printf("%d\n", p->content);
+	// 	printf("%d\n", p->value);
 	// 	printf("\n");
 	// 	p = p->next;
 	// 	if (p == head)

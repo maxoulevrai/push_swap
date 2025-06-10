@@ -6,13 +6,13 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 20:29:35 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/07 21:02:10 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/10 22:02:16 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-size_t	get_dbl_ll_size(t_stack **head)
+int	get_dbl_ll_size(t_stack **head)
 {
 	size_t	size;
 	t_stack	*p;
@@ -46,7 +46,6 @@ int	check_dbl(char **splited_args)
 		}
 		i++;
 	}
-
 	return (1);
 }
 
@@ -82,7 +81,7 @@ static int	is_valid(char **av)
 				&& av[i][j] != '-' && av[i][j] != '+'))
 				return (0);
 		}
-		if (ft_atoi(av[i]) == 0 && *av[i] != 0)
+		if (*av[i] != 0 && (ft_atoi(av[i]) > INT_MAX || ft_atoi(av[i]) < INT_MIN))
 			return (0);
 	}
 	if (!check_dbl(&av[1]))
@@ -150,7 +149,7 @@ t_stack	*init(char **splited_args)
 				return (stack_clear(&head), NULL);
 			return (NULL);
 		}
-		tmp->content = ft_atoi(splited_args[i++]);
+		tmp->value = ft_atoi(splited_args[i++]);
 		tmp->next = NULL;
 		s_addback(&head, tmp);
 	}
@@ -188,19 +187,19 @@ int	main(int ac, char **av)
 	// printf("%d\n", get_dbl_ll_size(&s_a));
 	while (tmp != NULL)
 	{
-		printf("%d\n", tmp->content);
+		printf("%d\n", tmp->value);
 		tmp = tmp->next;
 	}
 	// tmp = s_a;
 	// while (tmp != NULL)
 	// {
-	// 	tmp->content += 1;
+	// 	tmp->value += 1;
 	// 	tmp = tmp->next;
 	// }
 	// tmp = s_a;
 	// while (tmp != NULL)
 	// {
-	// 	printf("%d\n", tmp->content);
+	// 	printf("%d\n", tmp->value);
 	// 	tmp = tmp->next;
 	// }
 	stack_clear(&s_a);

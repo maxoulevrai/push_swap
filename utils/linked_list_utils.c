@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 23:21:15 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/09 05:17:16 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/10 21:02:16 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,23 @@ void	dbl_s_addback(t_stack **head, t_stack *new)
 		tmp = tmp->next;
 	tmp->next = new;
 	new->prev = tmp;
+}
+
+int	add_to_stack(t_stack **head, t_stack *new)
+{
+	if (!*head && !new)
+		return (-1);
+	if (!*head)
+	{
+		(*head) = new;
+		return (1);
+	}
+	new->prev = (*head)->prev;
+	new->next = (*head);
+	(*head)->prev->next = new;
+	(*head)->prev = new;
+	(*head) = new;
+	return (0);
 }
 
 int	get_dbl_ll_size(t_stack **head)

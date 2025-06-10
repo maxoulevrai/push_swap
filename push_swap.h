@@ -6,14 +6,14 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 19:36:37 by root              #+#    #+#             */
-/*   Updated: 2025/06/09 05:38:18 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/10 22:10:44 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
-#define PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-#include "lib/libft.h"
+# include "lib/libft.h"
 
 # define ABS(value) ((value < 0) ? (value * -1) : value)
 
@@ -22,8 +22,8 @@ typedef struct s_stack
 	int				value;
 	int				idx;
 	int				pos;
-	struct s_stack	*trgt;
 	int				trgt_cost;
+	struct s_stack	*trgt;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }				t_stack;
@@ -31,10 +31,10 @@ typedef struct s_stack
 
 typedef struct s_ter
 {
-	size_t				t1;
-	size_t				t2;
-	size_t				len;
-	size_t				med;
+	int				t1;
+	int				t2;
+	int				len;
+	int				med;
 }				t_ter;
 
 // parsing
@@ -42,15 +42,15 @@ t_stack	*parse(char **av);
 
 // init
 t_stack	*init_value(char **splited_args);
-t_stack	*update_pos(t_stack **head);
+t_stack	**update_pos(t_stack **head);
 void	get_idx(t_stack **head);
 
 // linked_list
 t_stack	*init_node(char *value);
-size_t	get_dbl_ll_size(t_stack **head);
+int		get_dbl_ll_size(t_stack **head);
 void	stack_clear(t_stack **lst);
-void	s_addback(t_stack **lst, t_stack *new);
-
+void	dbl_s_addback(t_stack **lst, t_stack *new);
+int		add_to_stack(t_stack **head, t_stack *new);
 
 // instructions
 void	push_a(t_stack **s_a, t_stack **s_b);
@@ -70,13 +70,13 @@ void	launch_algo(t_stack **s_a, t_stack **s_b);
 void	move_b_optimize(t_stack **s_a, t_stack **s_b);
 void	move_a_optimize(t_stack **s_a, t_stack **s_b, t_ter **ter);
 t_stack	*find_best_move(t_stack **s_a, t_stack **s_b, t_ter **ter);
-int		only_t3(t_stack **head, size_t t2);
+int		only_t3(t_stack **head, int t2);
 void	get_tertiles(t_stack **head,t_ter **ter);
 void	get_target(t_stack **s_a, t_stack **s_b);
 void	tiny_sort(t_stack **head, char print);
 int		is_sorted(t_stack **head, t_ter *ter);
-void	rra_rb(t_stack **best);
-void	ra_rb(t_stack **best);
+void	rra_rb(t_stack *best);
+void	ra_rb(t_stack *best);
 void	ft_finguin(t_stack **s_a);
 
 

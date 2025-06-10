@@ -6,23 +6,23 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 19:22:33 by root              #+#    #+#             */
-/*   Updated: 2025/06/09 05:19:50 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/10 18:06:05 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*push_swap(char **av)
+void	*push_swap(char **av)
 {
 	t_stack	*s_a;
 	t_stack	*s_b;
 
 	s_a = parse(av);
+	s_b = malloc(sizeof(t_stack));
 	if (!s_a)
 		return (NULL);
 	get_idx(&s_a);
-	launch_algo(s_a, s_b);
-
+	launch_algo(&s_a, &s_b);
 }
 
 
