@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 19:36:37 by root              #+#    #+#             */
-/*   Updated: 2025/06/10 22:10:44 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/12 23:41:24 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	get_idx(t_stack **head);
 t_stack	*init_node(char *value);
 int		get_dbl_ll_size(t_stack **head);
 void	stack_clear(t_stack **lst);
-void	dbl_s_addback(t_stack **lst, t_stack *new);
 int		add_to_stack(t_stack **head, t_stack *new);
+void	free_all(t_stack **s_a, t_stack **s_b, t_ter **ter);
 
 // instructions
 void	push_a(t_stack **s_a, t_stack **s_b);
@@ -66,7 +66,6 @@ void	reverse_rotate(t_stack **head, char print);
 void	rrr(t_stack **s_a, t_stack **s_b);
 
 // algo
-void	launch_algo(t_stack **s_a, t_stack **s_b);
 void	move_b_optimize(t_stack **s_a, t_stack **s_b);
 void	move_a_optimize(t_stack **s_a, t_stack **s_b, t_ter **ter);
 t_stack	*find_best_move(t_stack **s_a, t_stack **s_b, t_ter **ter);
@@ -78,7 +77,5 @@ int		is_sorted(t_stack **head, t_ter *ter);
 void	rra_rb(t_stack *best);
 void	ra_rb(t_stack *best);
 void	ft_finguin(t_stack **s_a);
-
-
 
 #endif

@@ -22,6 +22,7 @@ LIB_SRCS = ${LIB_DIR}ft_isalpha.c \
 			${LIB_DIR}ft_tolower.c \
 			${LIB_DIR}ft_strchr.c \
 			${LIB_DIR}ft_strrchr.c \
+			${LIB_DIR}ft_strcmp.c \
 			${LIB_DIR}ft_strncmp.c \
 			${LIB_DIR}ft_memchr.c \
 			${LIB_DIR}ft_memcmp.c \
@@ -75,7 +76,7 @@ lib_fclean:	lib_clean
 	@echo "Cleaning library"
 	${RM} ${LIB}
 
-re_lib:		fclean all
+re_lib:		lib_fclean lib
 
 .PHONY: lib lib_clean lib_fclean re_lib
 

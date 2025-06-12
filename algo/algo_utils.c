@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:46:11 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/10 22:14:03 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/12 23:48:24 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,14 @@ void	get_target(t_stack **s_a, t_stack **s_b)
 	}
 }
 
-// void	rra_rb(t_stack *best)
-// {
-// 	size_t	i;
-// 	size_t	j;
+void	rra_rb(t_stack *best)
+{
+	size_t	i;
+	size_t	j;
 
-// 	i = 0;
-// 	j = 0;
-	
-	
-// }
+	i = 0;
+	j = 0	
+}
 
 // void	ra_rb(t_stack *best)
 // {

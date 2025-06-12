@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 01:04:24 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/10 21:18:05 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/12 23:27:51 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	push_a(t_stack **s_a, t_stack **s_b)
 {
-	t_stack	*p;
-
-	p = (*s_b);
 	if (add_to_stack(s_a, *s_b) == -1)
 	{
 		// free_all(s_a, s_b);
@@ -30,9 +27,6 @@ void	push_a(t_stack **s_a, t_stack **s_b)
 
 void	push_b(t_stack **s_a, t_stack **s_b)
 {
-	t_stack	*p;
-
-	p = (*s_a);
 	if (add_to_stack(s_b, *s_a) == -1)
 	{
 		// free_all(s_a, s_b);

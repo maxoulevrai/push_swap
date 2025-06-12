@@ -6,11 +6,18 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 23:21:15 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/10 21:02:16 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/12 23:31:28 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
+void	free_all(t_stack **s_a, t_stack **s_b, t_ter **ter)
+{
+	stack_clear(s_a);
+	stack_clear(s_b);
+	free(*ter);
+}
 
 void	stack_clear(t_stack **head)
 {
@@ -24,24 +31,6 @@ void	stack_clear(t_stack **head)
 	}
 }
 
-void	dbl_s_addback(t_stack **head, t_stack *new)
-{
-	t_stack	*tmp;
-
-	if (!*head && !new)
-		return ;
-	if (!*head)
-	{
-		(*head) = new;
-		return ;
-	}
-	tmp = (*head);
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = new;
-	new->prev = tmp;
-}
-
 int	add_to_stack(t_stack **head, t_stack *new)
 {
 	if (!*head && !new)
@@ -52,28 +41,28 @@ int	add_to_stack(t_stack **head, t_stack *new)
 		return (1);
 	}
 	new->prev = (*head)->prev;
+	new->prev->next = new;
 	new->next = (*head);
-	(*head)->prev->next = new;
 	(*head)->prev = new;
-	(*head) = new;
 	return (0);
 }
 
-int	get_dbl_ll_size(t_stack **head)
+int get_dbl_ll_size(t_stack **head)
 {
 	size_t	size;
 	t_stack	*p;
 
-	size = 0;
 	if (!(*head))
 		return (0);
+	size = 1;
 	p = (*head)->next;
-	while (p != (*head))
+	while (1)
 	{
+		if (p == *head)
+			return (size);
 		size++;
 		p = p->next;
 	}
-	return (size);
 }
 
 t_stack	*init_node(char *value)

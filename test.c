@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:56:31 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/10 22:03:41 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/12 19:21:18 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,6 @@ void	stack_clear(t_stack **lst)
 	}
 }
 
-void	dbl_s_addback(t_stack **head, t_stack *new)
-{
-	t_stack	*tmp;
-
-	if (!*head && !new)
-		return ;
-	if (!*head)
-	{
-		(*head) = new;
-		return ;
-	}
-	tmp = (*head);
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = new;
-	new->prev = tmp;
-}
-
 t_stack	*init_value(char **splited_args)
 {
 	t_stack	*head;
@@ -77,7 +59,7 @@ t_stack	*init_value(char **splited_args)
 			return (NULL);
 		}
 		tmp->pos = pos++;
-		dbl_s_addback(&head, tmp);
+		add_to_stack(&head, tmp);
 		i++;
 	}
 	tmp->next = head;

@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 21:48:36 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/10 22:08:27 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/12 23:09:20 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,9 @@ t_stack	*init_value(char **splited_args)
 	size_t	i;
 	int 	pos;
 
-	head = NULL;
-	pos = get_dtab_len(splited_args);
+	pos = 0;
+	while (splited_args[pos])
+		pos++;
 	i = 0;
 	while (splited_args[i])
 	{
@@ -77,7 +78,7 @@ t_stack	*init_value(char **splited_args)
 			return (NULL);
 		}
 		tmp->pos = pos--;
-		dbl_s_addback(&head, tmp);
+		add_to_stack(&head, tmp);
 	}
 	tmp->next = head;
 	head->prev = tmp;

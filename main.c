@@ -6,42 +6,32 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 19:22:33 by root              #+#    #+#             */
-/*   Updated: 2025/06/10 18:06:05 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/12 23:39:29 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	*push_swap(char **av)
+void	push_swap(char **av)
 {
 	t_stack	*s_a;
 	t_stack	*s_b;
 
 	s_a = parse(av);
-	s_b = malloc(sizeof(t_stack));
+	s_b = NULL;
 	if (!s_a)
-		return (NULL);
+		return ;
 	get_idx(&s_a);
-	launch_algo(&s_a, &s_b);
+	move_b_optimize(&s_a, &s_b);
 }
 
 
 int	main(int ac, char **av)
 {
-	t_stack	*s_a;
 	t_stack	*tmp;
 
 	if (ac == 1)
 		return (ft_putendl_fd("Error (too few arguments)", 2), 0);
-	s_a = push_swap(av);
-	tmp = s_a;
-	while (tmp != NULL)
-	{
-		printf("%d\n", tmp->value);
-		tmp = tmp->next;
-	}
-	stack_clear(&s_a);
+	push_swap(av);
 	return (0);
 }
-
-// gestion 0 solo
