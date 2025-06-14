@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 19:36:37 by root              #+#    #+#             */
-/*   Updated: 2025/06/12 23:41:24 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/14 00:49:49 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ typedef struct s_stack
 	int				value;
 	int				idx;
 	int				pos;
-	int				trgt_cost;
 	struct s_stack	*trgt;
 	struct s_stack	*next;
 	struct s_stack	*prev;
@@ -66,8 +65,8 @@ void	reverse_rotate(t_stack **head, char print);
 void	rrr(t_stack **s_a, t_stack **s_b);
 
 // algo
-void	move_b_optimize(t_stack **s_a, t_stack **s_b);
-void	move_a_optimize(t_stack **s_a, t_stack **s_b, t_ter **ter);
+void	opti_b(t_stack **s_a, t_stack **s_b);
+void	opti_a(t_stack **s_a, t_stack **s_b, t_ter **ter);
 t_stack	*find_best_move(t_stack **s_a, t_stack **s_b, t_ter **ter);
 int		only_t3(t_stack **head, int t2);
 void	get_tertiles(t_stack **head,t_ter **ter);

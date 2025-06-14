@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:46:55 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/12 23:48:05 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/14 04:29:25 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,16 @@ int		only_t3(t_stack **head, int t2)
 	}
 }
 
+int	insert(t_stack *node)
+{
+	if (node->pos > 0 && node->trgt->pos < 0)
+		rra_rb();
+	else if (node->pos < 0 && node->trgt->pos > 0)
+		ra_rrb();
+	else
+		rrrr();
+}
+
 t_stack	*find_best_move(t_stack **s_a, t_stack **s_b, t_ter **ter)
 {
 	t_stack *p_b;
@@ -38,17 +48,12 @@ t_stack	*find_best_move(t_stack **s_a, t_stack **s_b, t_ter **ter)
 
 	current_cost = 0;
 	best_cost = INT_MAX;
-	get_target(update_pos(s_a), update_pos(s_b));
-	get_tertiles(s_a, ter);
 	p_b = *s_b;
 	best = *s_b;
 	while (1)
 	{
 		p_b = *s_b;
-		if (p_b->trgt->pos > (*ter)->med) // mediane quand p_a size < 5 ?
-			current_cost = ABS((*ter)->len - p_b->trgt->pos) + p_b->pos;
-		else
-			current_cost = ABS(p_b->trgt->pos - p_b->pos);
+		current_cost = ABS(p_b->pos - p_b->trgt->pos);
 		if (current_cost < best_cost)
 		{
 			best_cost = current_cost;
@@ -60,23 +65,27 @@ t_stack	*find_best_move(t_stack **s_a, t_stack **s_b, t_ter **ter)
 	}
 }
 
-void	move_a_optimize(t_stack **s_a, t_stack **s_b, t_ter **ter)
+void	opti_a(t_stack **s_a, t_stack **s_b, t_ter **ter)
 {
 	t_stack	*best_move;
 
 	while (get_dbl_ll_size(s_b) > 0)
 	{
+		get_target(update_pos(s_a), update_pos(s_b));
+		get_tertiles(s_a, ter);
 		best_move = find_best_move(s_a, s_b, ter);
-		if (best_move->trgt->pos < 0)
-			rra_rb(best_move);
+		if (best_move->pos > 0 && best_move->trgt->pos < 0)
+			rra_rb(s_a, s_b, best_move);
+		else if (best_move->pos < 0 && best_move->trgt->pos > 0)
+			ra_rrb(s_a, s_b, best_move);
 		else
-			ra_rb(best_move);
+			rrrr(s_a, s_b, best_move);
 	}
 	ft_finguin(s_a);
 	free_all(s_a, s_b, ter);
 }
 
-void	move_b_optimize(t_stack **s_a, t_stack **s_b)
+void	opti_b(t_stack **s_a, t_stack **s_b)
 {
 	t_ter	*ter;
 

@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 21:48:36 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/12 23:09:20 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/14 00:49:57 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,20 @@ t_stack	**update_pos(t_stack **head)
 {
 	int		pos;
 	t_stack	*p;
+	t_ter	*ter;
 
+	get_tertiles(head, &ter);
 	pos = 1;
 	p = *head;
 	while (1)
 	{
 		p->pos = pos;
-		p = p->next;
+		if (pos == ter->med)
+			pos *= -1;
 		pos++;
+		p = p->next;
 		if (p == *head)
-			return (head);
+			return (free(ter), head);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:46:11 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/12 23:48:24 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/14 04:37:36 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,20 +60,45 @@ void	get_target(t_stack **s_a, t_stack **s_b)
 	}
 }
 
-void	rra_rb(t_stack *best)
+void	rra_rb(t_stack **s_a, t_stack **s_b, t_stack *best)
 {
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = 0	
+	while (best->trgt->pos != 1)
+	{
+		reverse_rotate(*s_a, 'A');
+		best->trgt->pos++;
+	}
+	while (best->pos != 1)
+	{
+		rotate(*s_b, 'B');
+		best->trgt->pos--;
+	}
+	push_a(s_a, s_b);
 }
 
-// void	ra_rb(t_stack *best)
-// {
+void	ra_rrb(t_stack **s_a, t_stack **s_b, t_stack *best)
+{
 
-// }
+	while (best->trgt->pos != 1)
+	{
+		rotate(*s_a, 'A');
+		best->trgt->pos--;
+	}
+	while (best->pos != 1)
+	{
+		reverse_rotate(*s_b, 'B');
+		best->trgt->pos++;
+	}
+	push_a(s_a, s_b);
+}
 
+void	rrrr(t_stack **s_a, t_stack **s_b, t_stack *best)
+{
+	
+	if (best->trgt->pos < 0 && best->pos < 0)
+	{
+		while ()
+	}
+}
 // void	ft_finguin(t_stack **s_a)
 // {
 
@@ -88,3 +113,7 @@ void	rra_rb(t_stack *best)
 // 	total_cost = ABS(target_cost - pos);
 
 
+44 - 44 
+-44 - (-44)
+44 - (-44)
+-44 - 44
