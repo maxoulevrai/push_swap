@@ -6,6 +6,7 @@ MOVES_DIR = utils/instructions/
 SRCS = main.c \
 		utils/linked_list_utils.c \
 		utils/parsing_utils.c \
+		utils/init_utils.c \
 		${MOVES_DIR}push_instructions.c \
 		${MOVES_DIR}swap_instructions.c \
 		${MOVES_DIR}rotate_instructions.c \

@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 19:36:37 by root              #+#    #+#             */
-/*   Updated: 2025/06/14 00:49:49 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/17 16:34:33 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ t_stack	**update_pos(t_stack **head);
 void	get_idx(t_stack **head);
 
 // linked_list
-t_stack	*init_node(char *value);
+t_stack	*init_node(int value);
 int		get_dbl_ll_size(t_stack **head);
-void	stack_clear(t_stack **lst);
 int		add_to_stack(t_stack **head, t_stack *new);
 void	free_all(t_stack **s_a, t_stack **s_b, t_ter **ter);
+void	free_dbl_ll(t_stack **head);
 
 // instructions
 void	push_a(t_stack **s_a, t_stack **s_b);
@@ -66,15 +66,16 @@ void	rrr(t_stack **s_a, t_stack **s_b);
 
 // algo
 void	opti_b(t_stack **s_a, t_stack **s_b);
-void	opti_a(t_stack **s_a, t_stack **s_b, t_ter **ter);
-t_stack	*find_best_move(t_stack **s_a, t_stack **s_b, t_ter **ter);
+void	opti_a(t_stack **s_a, t_stack **s_b);
+t_stack	*find_best_move(t_stack **s_b);
 int		only_t3(t_stack **head, int t2);
 void	get_tertiles(t_stack **head,t_ter **ter);
 void	get_target(t_stack **s_a, t_stack **s_b);
 void	tiny_sort(t_stack **head, char print);
 int		is_sorted(t_stack **head, t_ter *ter);
-void	rra_rb(t_stack *best);
-void	ra_rb(t_stack *best);
+void    rra_rb(t_stack **s_a, t_stack **s_b, t_stack *best);
+void    ra_rrb(t_stack **s_a, t_stack **s_b, t_stack *best);
+void    rrrr(t_stack **s_a, t_stack **s_b, t_stack *best);
 void	ft_finguin(t_stack **s_a);
 
 #endif

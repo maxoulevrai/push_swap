@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 18:04:50 by root              #+#    #+#             */
-/*   Updated: 2025/06/10 21:58:59 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/16 04:29:19 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	check_dbl(char **splited_args)
 		j = i + 1;
 		while (splited_args[j])
 		{
-			if (!strcmp(splited_args[i], splited_args[j]))
+			if (!ft_strcmp(splited_args[i], splited_args[j]))
 				return (0);
 			j++;
 		}

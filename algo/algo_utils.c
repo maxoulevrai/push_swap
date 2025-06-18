@@ -6,32 +6,27 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:46:11 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/14 04:37:36 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/16 03:12:56 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	get_tertiles(t_stack **head,t_ter **ter)
+int		only_t3(t_stack **head, int t2)
 {
-	t_ter	*new_ter;
+	t_stack	*p;
 
-	new_ter = malloc(sizeof(t_ter));
-	if (!ter)
-		return ;
-	new_ter->len = get_dbl_ll_size(head);
-	if (new_ter->len % 3 == 0)
-		new_ter->t1 = new_ter->len / 3;
-	else
-		new_ter->t1 = (new_ter->len + 1) / 3;
-	new_ter->t2 = new_ter->t1 * 2;
-	if (new_ter->len % 2 == 0)
-		new_ter->med = new_ter->len / 2;
-	else
-		new_ter->med = (new_ter->len + 1) / 2;
-	if (*ter)
-		free(*ter);
-	*ter = new_ter;
+	if (!(*head))
+		return (-1);
+	p = (*head);
+	while (1)
+	{
+		if (p->idx < t2)
+			return (0);
+		p = p->next;
+		if (p == (*head))
+			return (1);
+	}
 }
 
 void	get_target(t_stack **s_a, t_stack **s_b)
@@ -64,12 +59,12 @@ void	rra_rb(t_stack **s_a, t_stack **s_b, t_stack *best)
 {
 	while (best->trgt->pos != 1)
 	{
-		reverse_rotate(*s_a, 'A');
+		reverse_rotate(s_a, 'A');
 		best->trgt->pos++;
 	}
 	while (best->pos != 1)
 	{
-		rotate(*s_b, 'B');
+		rotate(s_b, 'B');
 		best->trgt->pos--;
 	}
 	push_a(s_a, s_b);
@@ -77,43 +72,45 @@ void	rra_rb(t_stack **s_a, t_stack **s_b, t_stack *best)
 
 void	ra_rrb(t_stack **s_a, t_stack **s_b, t_stack *best)
 {
-
+	while (best->trgt->pos != 1 && best->pos != 1)
+	{
+		reverse_rotate(s_b, 'B');
+		rotate(s_a, 'A');
+		best->trgt->pos++;
+		best->pos--;
+	}
 	while (best->trgt->pos != 1)
 	{
-		rotate(*s_a, 'A');
-		best->trgt->pos--;
+		reverse_rotate(s_b, 'B');
+		best->trgt->pos++;
 	}
 	while (best->pos != 1)
 	{
-		reverse_rotate(*s_b, 'B');
-		best->trgt->pos++;
+		rotate(s_a, 'A');
+		best->pos--;
 	}
 	push_a(s_a, s_b);
 }
 
 void	rrrr(t_stack **s_a, t_stack **s_b, t_stack *best)
 {
-	
-	if (best->trgt->pos < 0 && best->pos < 0)
+	while (best->trgt->pos != 1 && best->pos != 1)
 	{
-		while ()
+		rotate(s_a, 'A');
+		reverse_rotate(s_b, 'B');
+		best->trgt->pos--;
+		best->pos++;
 	}
+	while (best->trgt->pos != 1)
+	{
+		rotate(s_a, 'A');
+		best->trgt->pos--;
+	}
+	while (best->pos != 1)
+	{
+		reverse_rotate(s_b, 'B');
+		best->pos++;
+	}
+	push_a(s_a, s_b);
 }
-// void	ft_finguin(t_stack **s_a)
-// {
 
-// }
-
-// total_cost 
-
-
-// if (target->pos > ter->med)
-// 	total_cost = ABS(len - target_cost) + pos;
-// else
-// 	total_cost = ABS(target_cost - pos);
-
-
-44 - 44 
--44 - (-44)
-44 - (-44)
--44 - 44

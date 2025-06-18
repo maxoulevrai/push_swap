@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 21:48:36 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/14 00:49:57 by maleca           ###   ########.fr       */
+/*   Created: 2025/06/16 04:08:49 by maleca            #+#    #+#             */
+/*   Updated: 2025/06/17 16:33:30 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../push_swap.h"
 
@@ -19,8 +20,12 @@ void	get_idx(t_stack **head)
 	t_stack		*tmp;
 	t_stack		*min;
 
-	idx = 0;
+	if (!head || !*head)
+		return;
 	size = get_dbl_ll_size(head);
+	if (size == 0)
+		return;
+	idx = 0;
 	while (idx < size)
 	{
 		tmp = *head;
@@ -46,6 +51,8 @@ t_stack	**update_pos(t_stack **head)
 	t_stack	*p;
 	t_ter	*ter;
 
+	if (!head || !*head)
+		return (NULL);
 	get_tertiles(head, &ter);
 	pos = 1;
 	p = *head;
@@ -66,25 +73,26 @@ t_stack	*init_value(char **splited_args)
 	t_stack	*head;
 	t_stack	*tmp;
 	size_t	i;
-	int 	pos;
+	int		pos;
 
 	pos = 0;
+	head = NULL;
 	while (splited_args[pos])
 		pos++;
 	i = 0;
 	while (splited_args[i])
 	{
-		tmp = init_node(splited_args[i++]);
+		tmp = init_node(ft_atoi(splited_args[i++]));
 		if (!tmp)
-		{
-			if (head)
-				return (stack_clear(&head), NULL);
-			return (NULL);
-		}
+			return (free_dbl_ll(&head), NULL);
 		tmp->pos = pos--;
-		add_to_stack(&head, tmp);
+		if (add_to_stack(&head, tmp) > 0)
+			return (free_dbl_ll(&head), free(tmp), NULL);
 	}
-	tmp->next = head;
-	head->prev = tmp;
+	if (head && tmp)
+	{
+		tmp->next = head;
+		head->prev = tmp;
+	}
 	return (head);
 }

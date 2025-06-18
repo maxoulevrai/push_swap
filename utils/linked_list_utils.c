@@ -5,44 +5,67 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 23:21:15 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/12 23:31:28 by maleca           ###   ########.fr       */
+/*   Created: 2025/06/17 18:08:20 by maleca            #+#    #+#             */
+/*   Updated: 2025/06/18 16:06:55 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	free_all(t_stack **s_a, t_stack **s_b, t_ter **ter)
+void free_all(t_stack **s_a, t_stack **s_b, t_ter **ter)
 {
-	stack_clear(s_a);
-	stack_clear(s_b);
-	free(*ter);
-}
-
-void	stack_clear(t_stack **head)
-{
-	t_stack	*tmp;
-
-	while ((*head))
+	if (s_a && *s_a)
+		free_dbl_ll(s_a);
+	if (s_b && *s_b)
+		free_dbl_ll(s_b);
+	if (ter && *ter)
 	{
-		tmp = (*head)->next;
-		free((*head));
-		(*head) = tmp;
+		free(*ter);
+		*ter = NULL;
 	}
 }
 
-int	add_to_stack(t_stack **head, t_stack *new)
+void	free_dbl_ll(t_stack **head)
 {
-	if (!*head && !new)
+	t_stack	*current;
+	t_stack	*next;
+	t_ter	*ter;
+	if (!head || !*head)
+		return ;
+	get_tertiles(head, &ter);
+
+	current = *head;
+	while (ter->len > 0)
+	{
+		next = current->next;
+		ter->len--;
+		free(current);
+		if (next == *head)
+			break ;
+		current = next;
+	}
+	if (ter)
+	{
+		free(ter);
+		ter = NULL;
+	}
+	*head = NULL;
+}
+
+int add_to_stack(t_stack **head, t_stack *new)
+{
+	if (!head || !new)
 		return (-1);
 	if (!*head)
 	{
-		(*head) = new;
-		return (1);
+		*head = new;
+		(*head)->next = new;
+		(*head)->prev = new;
+		return (0);
 	}
 	new->prev = (*head)->prev;
 	new->prev->next = new;
-	new->next = (*head);
+	new->next = *head;
 	(*head)->prev = new;
 	return (0);
 }
@@ -65,18 +88,18 @@ int get_dbl_ll_size(t_stack **head)
 	}
 }
 
-t_stack	*init_node(char *value)
+t_stack *init_node(int value)
 {
-	t_stack	*node;
+	t_stack *node;
 
 	node = malloc(sizeof(t_stack));
-	node->value = ft_atoi(value);
-	node->idx = 0;
-	node->pos = 0;
+	if (!node)
+		return (NULL);
+	node->value = value;
+	node->idx = -1;
+	node->pos = -1;
 	node->trgt = NULL;
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);
 }
-
-

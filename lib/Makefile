@@ -1,6 +1,6 @@
 LIB = libft.a
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -MMD
+CFLAGS = -Wall -Werror -Wextra -g3 -MMD -fsanitize=address
 AR = ar rcs
 RM = rm -rf
 LIB_DIR = srcs/
@@ -16,13 +16,13 @@ LIB_SRCS = ${LIB_DIR}ft_isalpha.c \
 			${LIB_DIR}ft_bzero.c \
 			${LIB_DIR}ft_memcpy.c \
 			${LIB_DIR}ft_memmove.c \
+			${LIB_DIR}ft_strcmp.c \
 			${LIB_DIR}ft_strlcpy.c \
 			${LIB_DIR}ft_strlcat.c \
 			${LIB_DIR}ft_toupper.c \
 			${LIB_DIR}ft_tolower.c \
 			${LIB_DIR}ft_strchr.c \
 			${LIB_DIR}ft_strrchr.c \
-			${LIB_DIR}ft_strcmp.c \
 			${LIB_DIR}ft_strncmp.c \
 			${LIB_DIR}ft_memchr.c \
 			${LIB_DIR}ft_memcmp.c \
@@ -76,7 +76,7 @@ lib_fclean:	lib_clean
 	@echo "Cleaning library"
 	${RM} ${LIB}
 
-re_lib:		lib_fclean lib
+re_lib:		fclean all
 
 .PHONY: lib lib_clean lib_fclean re_lib
 
