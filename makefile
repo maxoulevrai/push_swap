@@ -19,7 +19,7 @@ OBJS = ${SRCS:.c=.o}
 
 all: ${NAME}
 
-${NAME}: ${OBJS} ${LIB}
+${NAME}: ${OBJS} ${LIB} 
 	@echo -e "Compiling $@"
 	${CC} ${CFLAGS} -o $@ $^
 	@echo "Build complete"

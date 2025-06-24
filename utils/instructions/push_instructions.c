@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 16:39:39 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/18 16:40:08 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/24 15:05:15 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void push_a(t_stack **s_a, t_stack **s_b)
 	tmp->prev = NULL;
 	if (add_to_stack(s_a, tmp) == -1)
 	{
-		free_all(s_a, s_b, NULL);
+		free_all(s_a, s_b);
 		return;
 	}
 	write(1, "pa\n", 3);
@@ -47,9 +47,7 @@ void push_b(t_stack **s_a, t_stack **s_b)
 		return;
 	tmp = *s_a;
 	if ((*s_a)->next == *s_a)
-	{
 		*s_a = NULL;
-	}
 	else
 	{
 		(*s_a)->next->prev = (*s_a)->prev;
@@ -60,7 +58,7 @@ void push_b(t_stack **s_a, t_stack **s_b)
 	tmp->prev = NULL;
 	if (add_to_stack(s_b, tmp) == -1)
 	{
-		free_all(s_a, s_b, NULL);
+		free_all(s_a, s_b);
 		return;
 	}
 	write(1, "pb\n", 3);

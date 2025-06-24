@@ -1,6 +1,6 @@
 LIB = libft.a
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g3 -MMD -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g -MMD -fsanitize=address
 AR = ar rcs
 RM = rm -rf
 LIB_DIR = srcs/
@@ -55,7 +55,6 @@ LIB_SRCS = ${LIB_DIR}ft_isalpha.c \
 			${LIB_DIR}ft_lstclear.c \
 			${LIB_DIR}ft_lstiter.c \
 			${LIB_DIR}ft_lstmap.c \
-
 
 lib:		${LIB}
 

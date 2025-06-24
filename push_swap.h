@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 19:36:37 by root              #+#    #+#             */
-/*   Updated: 2025/06/17 16:34:33 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/20 20:30:41 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	get_idx(t_stack **head);
 t_stack	*init_node(int value);
 int		get_dbl_ll_size(t_stack **head);
 int		add_to_stack(t_stack **head, t_stack *new);
-void	free_all(t_stack **s_a, t_stack **s_b, t_ter **ter);
+void	free_all(t_stack **s_a, t_stack **s_b);
 void	free_dbl_ll(t_stack **head);
 
 // instructions
@@ -69,13 +69,14 @@ void	opti_b(t_stack **s_a, t_stack **s_b);
 void	opti_a(t_stack **s_a, t_stack **s_b);
 t_stack	*find_best_move(t_stack **s_b);
 int		only_t3(t_stack **head, int t2);
-void	get_tertiles(t_stack **head,t_ter **ter);
+t_ter	*get_tertiles(t_stack **head);
 void	get_target(t_stack **s_a, t_stack **s_b);
 void	tiny_sort(t_stack **head, char print);
-int		is_sorted(t_stack **head, t_ter *ter);
-void    rra_rb(t_stack **s_a, t_stack **s_b, t_stack *best);
-void    ra_rrb(t_stack **s_a, t_stack **s_b, t_stack *best);
-void    rrrr(t_stack **s_a, t_stack **s_b, t_stack *best);
+int		is_sorted(t_stack **head);
+void	rra_rb(t_stack **s_a, t_stack **s_b, t_stack *best);
+void	ra_rrb(t_stack **s_a, t_stack **s_b, t_stack *best);
+void	rrrr_neg(t_stack **s_a, t_stack **s_b, t_stack *best);
+void	rrrr_pos(t_stack **s_a, t_stack **s_b, t_stack *best);
 void	ft_finguin(t_stack **s_a);
 
 #endif

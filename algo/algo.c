@@ -5,61 +5,58 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/06 13:46:55 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/18 16:12:00 by maleca           ###   ########.fr       */
+/*   Created: 2025/06/20 15:15:43 by maleca            #+#    #+#             */
+/*   Updated: 2025/06/24 17:08:20 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void get_tertiles(t_stack **head, t_ter **ter)
+t_ter	*get_tertiles(t_stack **head)
 {
-    t_ter *new_ter;
+	t_ter	*ter;
 
-    if (!head || !*head || !ter)
-        return;
-    new_ter = malloc(sizeof(t_ter));
-    if (!new_ter)
-        return;
-    new_ter->len = get_dbl_ll_size(head);
-    if (new_ter->len % 3 == 0)
-        new_ter->t1 = new_ter->len / 3;
-    else
-        new_ter->t1 = (new_ter->len + 1) / 3;
-    new_ter->t2 = new_ter->t1 * 2;
-    if (new_ter->len % 2 == 0)
-        new_ter->med = new_ter->len / 2;
-    else
-        new_ter->med = (new_ter->len + 1) / 2;
-    *ter = new_ter;
+	if (!head || !*head)
+		return (NULL);
+	ter = malloc(sizeof(t_ter));
+	if (!ter)
+		return (NULL);
+	ter->len = get_dbl_ll_size(head);
+	if (ter->len % 3 == 0)
+		ter->t1 = ter->len / 3;
+	else
+		ter->t1 = (ter->len + 1) / 3;
+	ter->t2 = ter->t1 * 2;
+	if (ter->len % 2 == 0)
+		ter->med = ter->len / 2;
+	else
+		ter->med = (ter->len + 1) / 2;
+	return (ter);
 }
 
 void	ft_finguin(t_stack **s_a)
 {
-	t_stack	*p;
-	t_ter	*ter;
-	int		i;
+	t_stack	*p_a;
 
-	get_tertiles(s_a, &ter);
-	if (!ter)
-		return ;
-	i = 0;
-	p = *s_a;
-	while (i < get_dbl_ll_size(s_a))
+	p_a = *s_a;
+	while (p_a->idx != 1)
+		p_a = p_a->next;
+	if (p_a->pos < 0)
 	{
-		if (p->pos != i)
-			return ;
-		p = p->next;
-		i++;
+		while (p_a->pos != 0)
+		{
+			reverse_rotate(s_a, 'A');
+			p_a->pos++;
+		}
 	}
-	if (is_sorted(s_a, NULL))
-		return ;
-	while (p->value != 0)
+	else
 	{
-		reverse_rotate(s_a, 'A');
-		p = *s_a;
+		while (p_a->pos != 1)
+		{
+			rotate(s_a, 'A');
+			p_a->pos--;
+		}
 	}
-	free(ter);
 }
 
 t_stack	*find_best_move(t_stack **s_b)
@@ -97,19 +94,26 @@ void	opti_a(t_stack **s_a, t_stack **s_b)
 		return ;
 	while (get_dbl_ll_size(s_b) > 0)
 	{
-		update_pos(s_a);
-		update_pos(s_b);
-		get_target(s_a, s_b);
+		get_target(update_pos(s_a), update_pos(s_b));
+		printf("objet: %d cible: %d\n", (*s_b)->value, (*s_b)->trgt->value);
 		best_move = find_best_move(s_b);
 		if (!best_move || !best_move->trgt)
 			break;
 		if (best_move->pos > 0 && best_move->trgt->pos < 0)
+		{ 
+			best_move->trgt->pos = -best_move->trgt->pos;
 			rra_rb(s_a, s_b, best_move);
+		}
 		else if (best_move->pos < 0 && best_move->trgt->pos > 0)
 			ra_rrb(s_a, s_b, best_move);
+		else if (best_move->pos < 0 && best_move->trgt->pos < 0)
+			rrrr_neg(s_a, s_b, best_move);
 		else
-			rrrr(s_a, s_b, best_move);
+			rrrr_pos(s_a, s_b, best_move);
 	}
+	update_pos(s_a);
+	if (is_sorted(s_a) && (*s_a)->idx == 1)
+		return ;
 	ft_finguin(s_a);
 }
 
@@ -117,10 +121,10 @@ void	opti_b(t_stack **s_a, t_stack **s_b)
 {
 	t_ter	*ter;
 
-	get_tertiles(s_a, &ter);
+	ter = get_tertiles(s_a);
 	if (!ter)
 		return ;
-	while (only_t3(s_a, ter->t2) == 0)
+	while (only_t3(s_a, ter->t2) == 0 && get_dbl_ll_size(s_a) > 3)
 	{
 		if ((*s_a)->idx < ter->t1)
 		{
@@ -134,7 +138,7 @@ void	opti_b(t_stack **s_a, t_stack **s_b)
 	}
 	while (get_dbl_ll_size(s_a) > 3)
 		push_b(s_a, s_b);
-	if (!is_sorted(s_a, ter))
+	if (!is_sorted(s_a))
 		tiny_sort(s_a, 'A');
 	free(ter);
 }

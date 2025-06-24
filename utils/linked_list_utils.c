@@ -6,23 +6,18 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 18:08:20 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/18 16:06:55 by maleca           ###   ########.fr       */
+/*   Updated: 2025/06/20 20:30:08 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void free_all(t_stack **s_a, t_stack **s_b, t_ter **ter)
+void free_all(t_stack **s_a, t_stack **s_b)
 {
 	if (s_a && *s_a)
 		free_dbl_ll(s_a);
 	if (s_b && *s_b)
 		free_dbl_ll(s_b);
-	if (ter && *ter)
-	{
-		free(*ter);
-		*ter = NULL;
-	}
 }
 
 void	free_dbl_ll(t_stack **head)
@@ -30,10 +25,12 @@ void	free_dbl_ll(t_stack **head)
 	t_stack	*current;
 	t_stack	*next;
 	t_ter	*ter;
+
 	if (!head || !*head)
 		return ;
-	get_tertiles(head, &ter);
-
+	ter = get_tertiles(head);
+	if (!ter)
+		return ;
 	current = *head;
 	while (ter->len > 0)
 	{

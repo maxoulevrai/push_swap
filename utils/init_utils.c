@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 04:08:49 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/17 16:33:30 by maleca           ###   ########.fr       */
+/*   Created: 2025/06/24 09:04:16 by maleca            #+#    #+#             */
+/*   Updated: 2025/06/24 14:50:04 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,30 +21,52 @@ void	get_idx(t_stack **head)
 	t_stack		*min;
 
 	if (!head || !*head)
-		return;
+		return ;
 	size = get_dbl_ll_size(head);
-	if (size == 0)
-		return;
-	idx = 0;
+	idx = 1;
 	while (idx < size)
 	{
 		tmp = *head;
 		min = NULL;
 		while (1)
 		{
-			if (tmp->idx == -1)
-			{
-				if (!min || tmp->value < min->value)
-					min = tmp;
-			}
+			if (tmp->idx == -1 && (!min || tmp->value < min->value))
+				min = tmp;
 			tmp = tmp->next;
 			if (tmp == *head)
-				break;
+				break ;
 		}
 		if (min)
 			min->idx = idx++;
 	}
 }
+
+void	get_target(t_stack **s_a, t_stack **s_b)
+{
+	t_stack	*p_a;
+	t_stack	*p_b;
+	t_stack	*best;
+
+	p_b = *s_b;
+	best = *s_a;
+	while (1)
+	{
+		p_a = *s_a;
+		while (1)
+		{
+			if (p_b->value < p_a->value && best->value > p_a->value)
+				best = p_a;
+			p_a = p_a->next;
+			if (p_a == (*s_a))
+				break ;
+		}
+		p_b->trgt = best;
+		p_b = p_b->next;
+		if (p_b == (*s_b))
+			break ;
+	}
+}
+
 t_stack	**update_pos(t_stack **head)
 {
 	int		pos;
@@ -53,7 +75,9 @@ t_stack	**update_pos(t_stack **head)
 
 	if (!head || !*head)
 		return (NULL);
-	get_tertiles(head, &ter);
+	ter = get_tertiles(head);
+	if (!ter)
+		return (NULL);
 	pos = 1;
 	p = *head;
 	while (1)

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/18 18:54:03 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/18 18:54:55 by maleca           ###   ########.fr       */
+/*   Created: 2025/06/20 19:17:12 by maleca            #+#    #+#             */
+/*   Updated: 2025/06/24 17:02:11 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,111 +29,97 @@ int		only_t3(t_stack **head, int t2)
 	}
 }
 
-void	get_target(t_stack **s_a, t_stack **s_b)
-{
-	t_stack	*p_a;
-	t_stack	*p_b;
-	t_stack	*best;
-
-	p_b = *s_b;
-	best = *s_a;
-	while (1)
-	{
-		p_a = *s_a;
-		while (1)
-		{
-			if (p_b->value < p_a->value && best->value > p_a->value)
-				best = p_a;
-			p_a = p_a->next;
-			if (p_a == (*s_a))
-				break ;
-		}
-		p_b->trgt = best;
-		p_b = p_b->next;
-		if (p_b == (*s_b))
-			break ;
-	}
-}
 
 void	rra_rb(t_stack **s_a, t_stack **s_b, t_stack *best)
 {
-	while (best->trgt->pos != 1 && best->pos != 1)
+	while (best->trgt->pos < 0 && best->pos < 0)
 	{
 		reverse_rotate(s_a, 'A');
 		rotate(s_b, 'B');
 		best->trgt->pos++;
 		best->pos--;
 	}
-	while (best->trgt->pos != 1)
+	while (best->trgt->pos < 0)
 	{
 		reverse_rotate(s_a, 'A');
 		best->trgt->pos++;
 	}
-	while (best->pos != 1)
+	while (best->pos > 0)
 	{
 		rotate(s_b, 'B');
 		best->pos--;
 	}
+	// if (best->trgt->value < best->value)
+	// 	rotate(s_a, 'A');
 	push_a(s_a, s_b);
 }
 
 void	ra_rrb(t_stack **s_a, t_stack **s_b, t_stack *best)
 {
-	while (best->trgt->pos != 1 && best->pos != 1)
+	while (best->trgt->pos > 0 && best->pos < 0)
 	{
 		reverse_rotate(s_b, 'B');
 		rotate(s_a, 'A');
 		best->trgt->pos--;
 		best->pos++;
 	}
-	while (best->trgt->pos != 1)
-	{
-		reverse_rotate(s_b, 'B');
-		best->trgt->pos--;
-	}
-	while (best->pos != 1)
+	while (best->trgt->pos > 0)
 	{
 		rotate(s_a, 'A');
+		best->trgt->pos--;
+	}
+	while (best->pos < 0)
+	{
+		reverse_rotate(s_b, 'B');
 		best->pos++;
 	}
 	push_a(s_a, s_b);
 }
 
-void	rrrr(t_stack **s_a, t_stack **s_b, t_stack *best)
+void	rrrr_pos(t_stack **s_a, t_stack **s_b, t_stack *best)
 {
 	if (!s_a || !s_b || !best || !*s_a || !*s_b)
 		return ;
-	while (best->trgt->pos != 1 && best->pos != 1)
+	while (best->trgt->pos > -1 && best->pos > 1)
 	{
-		if (best->pos > 0 && best->trgt->pos > 0)
-		{
-			rotate(s_a, 'A');
-			rotate(s_b, 'B');
-			best->trgt->pos--;
-			best->pos--;
-		}
-		else if (best->pos < 0 && best->trgt->pos < 0)
-		{
-			reverse_rotate(s_a, 'A');
-			reverse_rotate(s_b, 'B');
-			best->trgt->pos++;
-			best->pos++;
-		}
+		rotate(s_a, 'A');
+		rotate(s_b, 'B');
+		best->trgt->pos--;
+		best->pos--;
 	}
-	while (best->trgt->pos != 1)
+	while (best->trgt->pos > -1)
 	{
-		if (best->trgt->pos > 0)
-			rotate(s_a, 'A');
-		else
-			reverse_rotate(s_a, 'A');
+		rotate(s_a, 'A');
+		best->trgt->pos--;
 	}
-	while (best->pos != 1)
+	while (best->pos > 1)
 	{
-		if (best->pos > 0)
-			rotate(s_b, 'B');
-		else
-			reverse_rotate(s_b, 'B');
+		rotate(s_b, 'B');
+		best->pos--;
 	}
 	push_a(s_a, s_b);
 }
 
+void	rrrr_neg(t_stack **s_a, t_stack **s_b, t_stack *best)
+{
+	if (!s_a || !s_b || !best || !*s_a || !*s_b)
+		return ;
+	while (best->trgt->pos < -1 && best->pos < 0)
+	{
+		reverse_rotate(s_a, 'A');
+		reverse_rotate(s_b, 'B');
+		best->trgt->pos++;
+		best->pos++;
+	}
+	while (best->trgt->pos < -1)
+	{
+		reverse_rotate(s_a, 'A');
+		best->trgt->pos++;
+	}
+	while (best->pos < 0)
+	{
+		reverse_rotate(s_b, 'B');
+		best->pos++;
+	}
+	push_a(s_a, s_b);
+}
