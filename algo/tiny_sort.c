@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 22:11:39 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/24 08:14:48 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/08 17:23:26 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	tiny_sort(t_stack **head, char print)
 		return;
 	first = (*head)->value;
 	second = (*head)->next->value;
-	third = (*head)->prev->value;
+	third = (*head)->next->next->value;
 	if ((first > second) && (second > third))
 	{
 		swap(head, print);
@@ -50,7 +50,7 @@ int	is_sorted(t_stack **head)
 	p = (*head);
 	while (1)
 	{
-		if (p->value > p->next->value)
+		if (p->value > p->next->value && p->next != (*head))
 			return (0);
 		p = p->next;
 		if (p == *head)

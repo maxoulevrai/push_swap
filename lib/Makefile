@@ -1,6 +1,6 @@
 LIB = libft.a
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -MMD -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g -MMD #-fsanitize=address
 AR = ar rcs
 RM = rm -rf
 LIB_DIR = srcs/

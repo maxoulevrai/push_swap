@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:15:43 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/24 17:08:20 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/09 16:29:12 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_finguin(t_stack **s_a)
 		p_a = p_a->next;
 	if (p_a->pos < 0)
 	{
-		while (p_a->pos != 0)
+		while (p_a->value != (*s_a)->value)
 		{
 			reverse_rotate(s_a, 'A');
 			p_a->pos++;
@@ -51,7 +51,7 @@ void	ft_finguin(t_stack **s_a)
 	}
 	else
 	{
-		while (p_a->pos != 1)
+		while (p_a->value != (*s_a)->value)
 		{
 			rotate(s_a, 'A');
 			p_a->pos--;
@@ -94,21 +94,24 @@ void	opti_a(t_stack **s_a, t_stack **s_b)
 		return ;
 	while (get_dbl_ll_size(s_b) > 0)
 	{
-		get_target(update_pos(s_a), update_pos(s_b));
-		printf("objet: %d cible: %d\n", (*s_b)->value, (*s_b)->trgt->value);
+		s_a = update_pos(s_a);
+		s_b = update_pos(s_b);
+		get_target(s_a, s_b);
+		printf("stack A:\n");
+		check_circular(*s_a);
+		printf("stack b:\n");
+		check_circular(*s_b);
 		best_move = find_best_move(s_b);
+		printf("objet: %d cible: %d\n", best_move->value, best_move->trgt->value);
 		if (!best_move || !best_move->trgt)
 			break;
 		if (best_move->pos > 0 && best_move->trgt->pos < 0)
-		{ 
-			best_move->trgt->pos = -best_move->trgt->pos;
 			rra_rb(s_a, s_b, best_move);
-		}
 		else if (best_move->pos < 0 && best_move->trgt->pos > 0)
 			ra_rrb(s_a, s_b, best_move);
 		else if (best_move->pos < 0 && best_move->trgt->pos < 0)
 			rrrr_neg(s_a, s_b, best_move);
-		else
+		else if (best_move->pos > 0 && best_move->trgt->pos > 0)
 			rrrr_pos(s_a, s_b, best_move);
 	}
 	update_pos(s_a);

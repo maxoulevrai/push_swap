@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:00:20 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/12 23:26:27 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/07 20:42:17 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ void	swap(t_stack **head, char print)
 	if (!(*head) || !(*head)->next)
 		return ;
 	p = (*head)->next;
+	(*head)->next->next->prev = *head;
 	(*head)->prev->next = p;
 	(*head)->next = p->next;
 	p->prev = (*head)->prev;
 	p->next = (*head);
+	(*head)->prev = p;
 	(*head) = p;
 	if (print == 'A')
 		write(1, "sa\n", 3);

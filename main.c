@@ -5,13 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 19:22:33 by root              #+#    #+#             */
-/*   Updated: 2025/06/24 16:42:13 by maleca           ###   ########.fr       */
+/*   Created: 2025/07/07 17:33:02 by maleca            #+#    #+#             */
+/*   Updated: 2025/07/08 21:58:08 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "push_swap.h"
+
+void check_circular(t_stack *head)
+{
+	t_stack *p = head;
+	int i = 0;
+	if (!head)
+		return;
+	do {
+		printf("node value: %d (pos: %d)\n", p->value, p->pos);
+		p = p->next;
+		i++;
+	} while (p != head && i < 1000);
+}
 
 void push_swap(char **av)
 {
@@ -30,7 +42,7 @@ void push_swap(char **av)
 		return;
 	}
 	opti_b(&s_a, &s_b);
-	//ter = get_tertiles()
+	// ter = get_tertiles()
 	opti_a(&s_a, &s_b);
 	free_all(&s_a, &s_b);
 }

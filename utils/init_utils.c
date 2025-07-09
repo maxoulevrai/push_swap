@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:04:16 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/24 14:50:04 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/08 22:20:01 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	get_target(t_stack **s_a, t_stack **s_b)
 		p_a = *s_a;
 		while (1)
 		{
-			if (p_b->value < p_a->value && best->value > p_a->value)
+			if (p_b->value > p_a->value && best->value < p_a->value)
 				best = p_a;
 			p_a = p_a->next;
 			if (p_a == (*s_a))
@@ -83,9 +83,11 @@ t_stack	**update_pos(t_stack **head)
 	while (1)
 	{
 		p->pos = pos;
-		if (pos == ter->med)
-			pos *= -1;
 		pos++;
+		if (ter->med % 2 == 0 && pos == ter->med)
+			pos = (pos + 1) * -1;
+		if (ter->med % 2 != 0 && pos == ter->med)
+			pos *= -1;
 		p = p->next;
 		if (p == *head)
 			return (free(ter), head);

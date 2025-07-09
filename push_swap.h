@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 19:36:37 by root              #+#    #+#             */
-/*   Updated: 2025/06/20 20:30:41 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/07 17:33:38 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,8 @@ void	ra_rrb(t_stack **s_a, t_stack **s_b, t_stack *best);
 void	rrrr_neg(t_stack **s_a, t_stack **s_b, t_stack *best);
 void	rrrr_pos(t_stack **s_a, t_stack **s_b, t_stack *best);
 void	ft_finguin(t_stack **s_a);
+
+// debug
+void check_circular(t_stack *head);
 
 #endif
