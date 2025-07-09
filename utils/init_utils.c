@@ -6,12 +6,34 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:04:16 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/08 22:20:01 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/09 16:41:26 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../push_swap.h"
+
+t_ter	*get_tertiles(t_stack **head)
+{
+	t_ter	*ter;
+
+	if (!head || !*head)
+		return (NULL);
+	ter = malloc(sizeof(t_ter));
+	if (!ter)
+		return (NULL);
+	ter->len = get_dbl_ll_size(head);
+	if (ter->len % 3 == 0)
+		ter->t1 = ter->len / 3;
+	else
+		ter->t1 = (ter->len + 1) / 3;
+	ter->t2 = ter->t1 * 2;
+	if (ter->len % 2 == 0)
+		ter->med = ter->len / 2;
+	else
+		ter->med = (ter->len + 1) / 2;
+	return (ter);
+}
 
 void	get_idx(t_stack **head)
 {
@@ -84,10 +106,6 @@ t_stack	**update_pos(t_stack **head)
 	{
 		p->pos = pos;
 		pos++;
-		if (ter->med % 2 == 0 && pos == ter->med)
-			pos = (pos + 1) * -1;
-		if (ter->med % 2 != 0 && pos == ter->med)
-			pos *= -1;
 		p = p->next;
 		if (p == *head)
 			return (free(ter), head);

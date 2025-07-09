@@ -6,32 +6,27 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:15:43 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/09 16:29:12 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/09 17:01:55 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-t_ter	*get_tertiles(t_stack **head)
+void	sort_insert(t_stack **s_a, t_stack **s_b, t_stack *best)
 {
-	t_ter	*ter;
+	t_ter	*ter_a;
+	t_ter	*ter_b;
 
-	if (!head || !*head)
-		return (NULL);
-	ter = malloc(sizeof(t_ter));
-	if (!ter)
-		return (NULL);
-	ter->len = get_dbl_ll_size(head);
-	if (ter->len % 3 == 0)
-		ter->t1 = ter->len / 3;
-	else
-		ter->t1 = (ter->len + 1) / 3;
-	ter->t2 = ter->t1 * 2;
-	if (ter->len % 2 == 0)
-		ter->med = ter->len / 2;
-	else
-		ter->med = (ter->len + 1) / 2;
-	return (ter);
+	ter_a = get_tertiles(s_a);
+	ter_b = get_tertiles(s_b);
+	if (best->pos <= ter_b->med && best->trgt->pos >= ter_a->med)
+		rra_rb(s_a, s_b, best);
+	else if (best->pos >= ter_b->med && best->trgt->pos <= ter_a->med)
+		ra_rrb(s_a, s_b, best);
+	else if (best->pos >= ter_b->med && best->trgt->pos >= ter_a->med)
+		rrrr_neg(s_a, s_b, best);
+	else if (best->pos <= ter_b->med && best->trgt->pos <= ter_a->med)
+		rrrr_pos(s_a, s_b, best);
 }
 
 void	ft_finguin(t_stack **s_a)
@@ -88,36 +83,25 @@ t_stack	*find_best_move(t_stack **s_b)
 
 void	opti_a(t_stack **s_a, t_stack **s_b)
 {
-	t_stack	*best_move;
+	t_stack	*best;
 
 	if (!s_a || !*s_a || !s_b || !*s_b)
 		return ;
 	while (get_dbl_ll_size(s_b) > 0)
 	{
-		s_a = update_pos(s_a);
-		s_b = update_pos(s_b);
-		get_target(s_a, s_b);
+		get_target(update_pos(s_a), update_pos(s_b));
 		printf("stack A:\n");
 		check_circular(*s_a);
-		printf("stack b:\n");
+		printf("stack B:\n");
 		check_circular(*s_b);
-		best_move = find_best_move(s_b);
-		printf("objet: %d cible: %d\n", best_move->value, best_move->trgt->value);
-		if (!best_move || !best_move->trgt)
+		best = find_best_move(s_b);
+		printf("objet: %d cible: %d\n", best->value, best->trgt->value);
+		if (!best || !best->trgt)
 			break;
-		if (best_move->pos > 0 && best_move->trgt->pos < 0)
-			rra_rb(s_a, s_b, best_move);
-		else if (best_move->pos < 0 && best_move->trgt->pos > 0)
-			ra_rrb(s_a, s_b, best_move);
-		else if (best_move->pos < 0 && best_move->trgt->pos < 0)
-			rrrr_neg(s_a, s_b, best_move);
-		else if (best_move->pos > 0 && best_move->trgt->pos > 0)
-			rrrr_pos(s_a, s_b, best_move);
+		sort_insert(s_a, s_b, best);
 	}
-	update_pos(s_a);
-	if (is_sorted(s_a) && (*s_a)->idx == 1)
+	if (is_sorted(update_pos(s_a)) && (*s_a)->idx == 1)
 		return ;
-	ft_finguin(s_a);
 }
 
 void	opti_b(t_stack **s_a, t_stack **s_b)

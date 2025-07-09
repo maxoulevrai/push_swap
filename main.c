@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 17:33:02 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/08 21:58:08 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/09 16:37:40 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void push_swap(char **av)
 	opti_b(&s_a, &s_b);
 	// ter = get_tertiles()
 	opti_a(&s_a, &s_b);
+	ft_finguin(&s_a);
 	free_all(&s_a, &s_b);
 }
 

@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 19:36:37 by root              #+#    #+#             */
-/*   Updated: 2025/07/07 17:33:38 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/09 16:43:27 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ t_ter	*get_tertiles(t_stack **head);
 void	get_target(t_stack **s_a, t_stack **s_b);
 void	tiny_sort(t_stack **head, char print);
 int		is_sorted(t_stack **head);
+void	sort_insert(t_stack **s_a, t_stack **s_b, t_stack *best);
 void	rra_rb(t_stack **s_a, t_stack **s_b, t_stack *best);
 void	ra_rrb(t_stack **s_a, t_stack **s_b, t_stack *best);
 void	rrrr_neg(t_stack **s_a, t_stack **s_b, t_stack *best);
