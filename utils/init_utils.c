@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:04:16 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/09 16:41:26 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/28 18:08:47 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	get_idx(t_stack **head)
 		return ;
 	size = get_dbl_ll_size(head);
 	idx = 1;
-	while (idx < size)
+	while (idx <= size) //belek overflow -> size
 	{
 		tmp = *head;
 		min = NULL;
@@ -73,10 +73,12 @@ void	get_target(t_stack **s_a, t_stack **s_b)
 	best = *s_a;
 	while (1)
 	{
+		while (best->value < p_b->value)
+			best = best->next;
 		p_a = *s_a;
 		while (1)
 		{
-			if (p_b->value > p_a->value && best->value < p_a->value)
+			if (p_b->value < p_a->value && best->value > p_a->value)
 				best = p_a;
 			p_a = p_a->next;
 			if (p_a == (*s_a))

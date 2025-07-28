@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 19:36:37 by root              #+#    #+#             */
-/*   Updated: 2025/07/09 16:43:27 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/28 15:15:33 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void	rrr(t_stack **s_a, t_stack **s_b);
 // algo
 void	opti_b(t_stack **s_a, t_stack **s_b);
 void	opti_a(t_stack **s_a, t_stack **s_b);
-t_stack	*find_best_move(t_stack **s_b);
+t_stack	*find_best_move(t_stack **s_b, t_ter *ter_a, t_ter *ter_b);
+int		get_cost(t_stack *p_b, t_ter *ter_a, t_ter *ter_b);
 int		only_t3(t_stack **head, int t2);
 t_ter	*get_tertiles(t_stack **head);
 void	get_target(t_stack **s_a, t_stack **s_b);

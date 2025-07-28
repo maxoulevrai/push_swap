@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:15:43 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/09 17:01:55 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/28 17:32:40 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,28 @@ void	sort_insert(t_stack **s_a, t_stack **s_b, t_stack *best)
 
 	ter_a = get_tertiles(s_a);
 	ter_b = get_tertiles(s_b);
-	if (best->pos <= ter_b->med && best->trgt->pos >= ter_a->med)
+	if (best->pos <= ter_b->med && best->trgt->pos > ter_a->med)
 		rra_rb(s_a, s_b, best);
-	else if (best->pos >= ter_b->med && best->trgt->pos <= ter_a->med)
+	else if (best->pos > ter_b->med && best->trgt->pos <= ter_a->med)
 		ra_rrb(s_a, s_b, best);
-	else if (best->pos >= ter_b->med && best->trgt->pos >= ter_a->med)
+	else if (best->pos > ter_b->med && best->trgt->pos > ter_a->med)
 		rrrr_neg(s_a, s_b, best);
 	else if (best->pos <= ter_b->med && best->trgt->pos <= ter_a->med)
 		rrrr_pos(s_a, s_b, best);
+	free(ter_a);
+	free(ter_b);
 }
 
 void	ft_finguin(t_stack **s_a)
 {
 	t_stack	*p_a;
+	t_ter	*ter_a;
 
 	p_a = *s_a;
 	while (p_a->idx != 1)
 		p_a = p_a->next;
-	if (p_a->pos < 0)
+	ter_a = get_tertiles(s_a);
+	if (p_a->pos < ter_a->med)
 	{
 		while (p_a->value != (*s_a)->value)
 		{
@@ -54,7 +58,7 @@ void	ft_finguin(t_stack **s_a)
 	}
 }
 
-t_stack	*find_best_move(t_stack **s_b)
+t_stack	*find_best_move(t_stack **s_b, t_ter *ter_a, t_ter *ter_b)
 {
 	t_stack *p_b;
 	t_stack	*best;
@@ -69,7 +73,7 @@ t_stack	*find_best_move(t_stack **s_b)
 	best = *s_b;
 	while (1)
 	{
-		current_cost = ABS(p_b->pos - p_b->trgt->pos);
+		current_cost = get_cost(p_b, ter_a, ter_b);
 		if (current_cost < best_cost)
 		{
 			best_cost = current_cost;
@@ -77,25 +81,31 @@ t_stack	*find_best_move(t_stack **s_b)
 		}
 		p_b = p_b->next;
 		if (p_b == *s_b)
-			return (best);
+			return (free(ter_a), free(ter_b), best);
 	}
 }
 
 void	opti_a(t_stack **s_a, t_stack **s_b)
 {
 	t_stack	*best;
+	t_ter	*ter_a;
+	t_ter	*ter_b;
 
 	if (!s_a || !*s_a || !s_b || !*s_b)
 		return ;
 	while (get_dbl_ll_size(s_b) > 0)
 	{
-		get_target(update_pos(s_a), update_pos(s_b));
-		printf("stack A:\n");
-		check_circular(*s_a);
-		printf("stack B:\n");
-		check_circular(*s_b);
-		best = find_best_move(s_b);
-		printf("objet: %d cible: %d\n", best->value, best->trgt->value);
+		update_pos(s_a);
+		update_pos(s_b);
+		get_target(s_a, s_b);
+		ter_a = get_tertiles(s_a);
+		ter_b = get_tertiles(s_b);
+		// printf("stack A:\n");
+		// check_circular(*s_a);
+		// printf("stack B:\n");
+		// check_circular(*s_b);
+		best = find_best_move(s_b, ter_a, ter_b);
+		// printf("objet: %d cible: %d\n", best->value, best->trgt->value);
 		if (!best || !best->trgt)
 			break;
 		sort_insert(s_a, s_b, best);
@@ -118,9 +128,9 @@ void	opti_b(t_stack **s_a, t_stack **s_b)
 			push_b(s_a, s_b);
 			rotate(s_b, 'B');
 		}
-		else if (((*s_a)->idx > ter->t2))
+		else if (((*s_a)->idx >= ter->t2))
 			rotate(s_a, 'A');
-		else 
+		else
 			push_b(s_a, s_b);
 	}
 	while (get_dbl_ll_size(s_a) > 3)

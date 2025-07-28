@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 17:33:02 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/09 16:37:40 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/28 18:03:26 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void push_swap(char **av)
 {
 	t_stack *s_a;
 	t_stack *s_b;
-//	t_ter *ter;
 
 	s_b = NULL;
 	s_a = parse(av);
@@ -42,9 +41,8 @@ void push_swap(char **av)
 		return;
 	}
 	opti_b(&s_a, &s_b);
-	// ter = get_tertiles()
 	opti_a(&s_a, &s_b);
-	ft_finguin(&s_a);
+	// ft_finguin(&s_a);
 	free_all(&s_a, &s_b);
 }
 

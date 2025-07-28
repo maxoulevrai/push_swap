@@ -6,28 +6,27 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 19:17:12 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/08 17:32:21 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/28 15:20:37 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int		only_t3(t_stack **head, int t2)
+int		get_cost(t_stack *p_b, t_ter *ter_a, t_ter *ter_b)
 {
-	t_stack	*p;
+	int	cost;
 
-	if (!(*head))
-		return (-1);
-	p = (*head);
-	while (1)
-	{
-		if (p->idx < t2)
-			return (0);
-		p = p->next;
-		if (p == (*head))
-			return (1);
-	}
-}
+	cost = 0;
+	if (p_b->pos <= ter_b->med && p_b->trgt->pos <= ter_a->med)
+		cost = ABS(p_b->pos - p_b->trgt->pos);
+	else if (p_b->pos > ter_b->med && p_b->trgt->pos > ter_a->med)
+		cost = ABS((ter_b->len - p_b->pos) - (ter_a->len - p_b->trgt->pos));
+	else if (p_b->pos <= ter_b->med && p_b->trgt->pos > ter_a->med)
+		cost = p_b->pos + (ter_a->len - p_b->trgt->pos);
+	else if (p_b->pos > ter_b->med && p_b->trgt->pos <= ter_a->med)
+		cost = (ter_b->len - p_b->pos) + p_b->trgt->pos;
+	return (cost);
+}	
 
 void	rra_rb(t_stack **s_a, t_stack **s_b, t_stack *best)
 {

@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 22:11:39 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/08 17:23:26 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/28 14:54:50 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,21 @@ int	is_sorted(t_stack **head)
 			break;
 	}
 	return (1);
+}
+
+int		only_t3(t_stack **head, int t2)
+{
+	t_stack	*p;
+
+	if (!(*head))
+		return (-1);
+	p = (*head);
+	while (1)
+	{
+		if (p->idx < t2)
+			return (0);
+		p = p->next;
+		if (p == (*head))
+			return (1);
+	}
 }
