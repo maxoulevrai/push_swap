@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:15:43 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/28 17:32:40 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/29 16:56:23 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,17 @@ void	ft_finguin(t_stack **s_a)
 	while (p_a->idx != 1)
 		p_a = p_a->next;
 	ter_a = get_tertiles(s_a);
-	if (p_a->pos < ter_a->med)
+	if (p_a->pos <= ter_a->med)
 	{
 		while (p_a->value != (*s_a)->value)
-		{
 			reverse_rotate(s_a, 'A');
-			p_a->pos++;
-		}
 	}
 	else
 	{
 		while (p_a->value != (*s_a)->value)
-		{
 			rotate(s_a, 'A');
-			p_a->pos--;
-		}
 	}
+	free(ter_a);
 }
 
 t_stack	*find_best_move(t_stack **s_b, t_ter *ter_a, t_ter *ter_b)
@@ -110,8 +105,6 @@ void	opti_a(t_stack **s_a, t_stack **s_b)
 			break;
 		sort_insert(s_a, s_b, best);
 	}
-	if (is_sorted(update_pos(s_a)) && (*s_a)->idx == 1)
-		return ;
 }
 
 void	opti_b(t_stack **s_a, t_stack **s_b)

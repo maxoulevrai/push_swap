@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 12:33:52 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/10 21:56:24 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/29 17:13:11 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ long	ft_atoi(const char *nptr)
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		nbr = nbr * 10 + (nptr[i] - '0');
+		if ((nbr > INT_MAX || nbr < INT_MIN) && nptr[0] != 0)
+			return (0);
 		i++;
 	}
 	return (sign * nbr);

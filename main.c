@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 17:33:02 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/28 18:03:26 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/29 16:56:03 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,21 @@ void push_swap(char **av)
 	s_b = NULL;
 	s_a = parse(av);
 	if (!s_a)
-		return;
+	{
+		ft_putendl_fd("Error", 2);
+		return ;
+	}
 	get_idx(&s_a);
 	if (is_sorted(&s_a))
 	{
 		free_dbl_ll(&s_a);
-		return;
+		return ;
 	}
 	opti_b(&s_a, &s_b);
 	opti_a(&s_a, &s_b);
-	// ft_finguin(&s_a);
+	if (is_sorted(update_pos(&s_a)) && s_a->idx == 1)
+		return (free_all(&s_a, &s_b));
+	ft_finguin(&s_a);
 	free_all(&s_a, &s_b);
 }
 

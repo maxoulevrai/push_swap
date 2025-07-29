@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 18:04:50 by root              #+#    #+#             */
-/*   Updated: 2025/06/16 04:29:19 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/29 17:14:36 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	is_valid(char **av)
 				&& av[i][j] != '-' && av[i][j] != '+'))
 				return (0);
 		}
-		if ((ft_atoi(av[i]) > INT_MAX || ft_atoi(av[i]) < INT_MIN) && *av[i] != 0)
+		if (ft_atoi(av[i]) == 0 && av[i] != 0)
 			return (0);
 	}
 	if (!check_dbl(&av[1]))
