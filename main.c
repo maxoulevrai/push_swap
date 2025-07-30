@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 17:33:02 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/30 03:31:31 by root             ###   ########.fr       */
+/*   Updated: 2025/07/30 16:59:05 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ void	push_swap(char **av)
 int	main(int ac, char **av)
 {
 	if (ac == 1)
-		return (ft_putendl_fd("Error", 2), 0);
+		return (0);
 	if (!av || !*av)
-		return (ft_putendl_fd("Error", 2), 0);
+		return (ft_putendl_fd("Error", 2), 1);
 	push_swap(av);
 	return (0);
 }

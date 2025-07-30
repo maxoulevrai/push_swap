@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 18:04:50 by root              #+#    #+#             */
-/*   Updated: 2025/07/30 03:50:12 by root             ###   ########.fr       */
+/*   Updated: 2025/07/30 17:11:23 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	check_dbl(char **splited_args)
 		j = i + 1;
 		while (splited_args[j])
 		{
-			if (!ft_strcmp(splited_args[i], splited_args[j]))
+			if (ft_atoi(splited_args[i]) == ft_atoi(splited_args[j]))
 				return (0);
 			j++;
 		}
@@ -55,8 +55,6 @@ static int	is_valid(char **av)
 		if (ft_atoi(av[i]) == 0 && av[i] != 0)
 			return (0);
 	}
-	if (!check_dbl(&av[1]))
-		return (0);
 	return (1);
 }
 
@@ -94,6 +92,8 @@ t_stack	*parse(char **av)
 		return (NULL);
 	splited_args = join_n_split(av);
 	if (!splited_args)
+		return (NULL);
+	if (!check_dbl(splited_args))
 		return (NULL);
 	s_a = init_value(splited_args);
 	if (!s_a)
