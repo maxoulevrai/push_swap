@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:15:43 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/30 04:09:16 by root             ###   ########.fr       */
+/*   Updated: 2025/07/30 17:44:30 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	opti_b(t_stack **s_a, t_stack **s_b)
 	mq = get_mq(s_a);
 	if (!mq)
 		return ;
-	while (inter(s_a, mq) && get_dbl_ll_size(s_a) > 10)
+	while (inter(s_a, mq) && get_dbl_ll_size(s_a) > 30)
 	{
 		if ((*s_a)->idx >= mq->q1 && (*s_a)->idx <= mq->med)
 		{
