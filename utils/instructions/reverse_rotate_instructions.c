@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate_instructions.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 18:16:38 by maleca            #+#    #+#             */
-/*   Updated: 2025/06/20 16:04:59 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/30 03:32:25 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	reverse_rotate(t_stack **head, char print)
 	if (print == 'B')
 		write(1, "rrb\n", 4);
 }
-
 
 void	rrr(t_stack **s_a, t_stack **s_b)
 {

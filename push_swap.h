@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 19:36:37 by root              #+#    #+#             */
-/*   Updated: 2025/07/28 15:15:33 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/30 04:09:21 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ typedef struct s_stack
 }				t_stack;
 
 
-typedef struct s_ter
+typedef struct s_mq
 {
-	int				t1;
-	int				t2;
-	int				len;
+	int				q1;
+	int				q3;
 	int				med;
-}				t_ter;
+	int				len;
+}				t_mq;
 
 // parsing
 t_stack	*parse(char **av);
@@ -67,10 +67,10 @@ void	rrr(t_stack **s_a, t_stack **s_b);
 // algo
 void	opti_b(t_stack **s_a, t_stack **s_b);
 void	opti_a(t_stack **s_a, t_stack **s_b);
-t_stack	*find_best_move(t_stack **s_b, t_ter *ter_a, t_ter *ter_b);
-int		get_cost(t_stack *p_b, t_ter *ter_a, t_ter *ter_b);
-int		only_t3(t_stack **head, int t2);
-t_ter	*get_tertiles(t_stack **head);
+t_stack	*find_best_move(t_stack **s_b, t_mq *mq_a, t_mq *mq_b);
+int		get_cost(t_stack *p_b, t_mq *mq_a, t_mq *mq_b);
+int		inter(t_stack **head, t_mq *mq);
+t_mq	*get_mq(t_stack **head);
 void	get_target(t_stack **s_a, t_stack **s_b);
 void	tiny_sort(t_stack **head, char print);
 int		is_sorted(t_stack **head);

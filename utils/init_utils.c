@@ -3,36 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:04:16 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/29 16:51:40 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/30 03:50:34 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../push_swap.h"
 
-t_ter	*get_tertiles(t_stack **head)
+t_mq	*get_mq(t_stack **head)
 {
-	t_ter	*ter;
+	t_mq	*mq;
 
 	if (!head || !*head)
 		return (NULL);
-	ter = malloc(sizeof(t_ter));
-	if (!ter)
+	mq = malloc(sizeof(t_mq));
+	if (!mq)
 		return (NULL);
-	ter->len = get_dbl_ll_size(head);
-	if (ter->len % 3 == 0)
-		ter->t1 = ter->len / 3;
+	mq->len = get_dbl_ll_size(head);
+	if (mq->len % 2 == 0)
+		mq->q1 = mq->len / 4;
 	else
-		ter->t1 = (ter->len + 1) / 3;
-	ter->t2 = ter->t1 * 2;
-	if (ter->len % 2 == 0)
-		ter->med = ter->len / 2;
+		mq->q1 = (mq->len + 1) / 4;
+	mq->q3 = mq->q1 * 3;
+	if (mq->len % 2 == 0)
+		mq->med = mq->len / 2;
 	else
-		ter->med = (ter->len + 1) / 2;
-	return (ter);
+		mq->med = (mq->len + 1) / 2;
+	return (mq);
 }
 
 void	get_idx(t_stack **head)
@@ -46,7 +45,7 @@ void	get_idx(t_stack **head)
 		return ;
 	size = get_dbl_ll_size(head);
 	idx = 1;
-	while (idx <= size) //belek overflow -> size
+	while (idx <= size)
 	{
 		tmp = *head;
 		min = NULL;
@@ -73,8 +72,6 @@ void	get_target(t_stack **s_a, t_stack **s_b)
 	best = *s_a;
 	while (1)
 	{
-		// while (best->value < p_b->value)
-		// 	best = best->next;
 		p_a = *s_a;
 		while (1)
 		{
@@ -95,12 +92,12 @@ t_stack	**update_pos(t_stack **head)
 {
 	int		pos;
 	t_stack	*p;
-	t_ter	*ter;
+	t_mq	*mq;
 
 	if (!head || !*head)
 		return (NULL);
-	ter = get_tertiles(head);
-	if (!ter)
+	mq = get_mq(head);
+	if (!mq)
 		return (NULL);
 	pos = 1;
 	p = *head;
@@ -110,7 +107,7 @@ t_stack	**update_pos(t_stack **head)
 		pos++;
 		p = p->next;
 		if (p == *head)
-			return (free(ter), head);
+			return (free(mq), head);
 	}
 }
 

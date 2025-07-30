@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 01:32:31 by maleca            #+#    #+#             */
-/*   Updated: 2025/05/27 20:01:50 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/30 03:31:57 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	int	size;
 	t_list	*p;
+	int		size;
 
 	size = 0;
 	if (!lst)

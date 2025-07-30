@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tiny_sort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 22:11:39 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/28 14:54:50 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/30 03:55:28 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	tiny_sort(t_stack **head, char print)
 	int	third;
 
 	if (!head || !*head || !(*head)->next || !(*head)->prev)
-		return;
+		return ;
 	first = (*head)->value;
 	second = (*head)->next->value;
 	third = (*head)->next->next->value;
@@ -54,12 +54,12 @@ int	is_sorted(t_stack **head)
 			return (0);
 		p = p->next;
 		if (p == *head)
-			break;
+			break ;
 	}
 	return (1);
 }
 
-int		only_t3(t_stack **head, int t2)
+int	inter(t_stack **head, t_mq *mq)
 {
 	t_stack	*p;
 
@@ -68,10 +68,10 @@ int		only_t3(t_stack **head, int t2)
 	p = (*head);
 	while (1)
 	{
-		if (p->idx < t2)
-			return (0);
+		if (p->idx >= mq->q1 && p->idx <= mq->q3)
+			return (1);
 		p = p->next;
 		if (p == (*head))
-			return (1);
+			return (0);
 	}
 }
