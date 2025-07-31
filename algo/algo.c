@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:15:43 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/30 17:44:30 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/31 20:08:43 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	sort_insert(t_stack **s_a, t_stack **s_b, t_stack *best)
 	free(mq_b);
 }
 
-void	ft_finguin(t_stack **s_a)
+void	order(t_stack **s_a)
 {
 	t_stack	*p_a;
 	t_mq	*mq_a;
@@ -113,7 +113,7 @@ void	opti_b(t_stack **s_a, t_stack **s_b)
 	mq = get_mq(s_a);
 	if (!mq)
 		return ;
-	while (inter(s_a, mq) && get_dbl_ll_size(s_a) > 30)
+	while (inter(s_a, mq) && get_dbl_ll_size(s_a) > 10)
 	{
 		if ((*s_a)->idx >= mq->q1 && (*s_a)->idx <= mq->med)
 		{
@@ -131,7 +131,5 @@ void	opti_b(t_stack **s_a, t_stack **s_b)
 		if ((*s_b)->idx < mq->med)
 			rotate(s_b, 'B');
 	}
-	if (!is_sorted(s_a))
-		tiny_sort(s_a, 'A');
 	free(mq);
 }

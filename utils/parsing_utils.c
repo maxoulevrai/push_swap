@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 18:04:50 by root              #+#    #+#             */
-/*   Updated: 2025/07/30 17:11:23 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/31 20:17:18 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ t_stack	*parse(char **av)
 	if (!splited_args)
 		return (NULL);
 	if (!check_dbl(splited_args))
-		return (NULL);
+		return (free_dtab(splited_args), NULL);
 	s_a = init_value(splited_args);
 	if (!s_a)
 		return (NULL);

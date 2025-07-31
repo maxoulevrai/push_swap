@@ -6,24 +6,24 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 17:33:02 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/30 16:59:05 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/31 20:04:32 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// void	check_circular(t_stack *head)
-// {
-// 	t_stack	*p = head;
-// 	int	 i = 0;
-// 	if (!head)
-// 		return;
-// 	do {
-// 		printf("node value: %d (pos: %d)\n", p->value, p->pos);
-// 		p = p->next;
-// 		i++;
-// 	} while (p != head && i < 1000);
-// }
+void	check_circular(t_stack *head)
+{
+	t_stack	*p = head;
+	int	 i = 0;
+	if (!head)
+		return;
+	do {
+		printf("node value: %d (pos: %d)\n", p->value, p->pos);
+		p = p->next;
+		i++;
+	} while (p != head && i < 1000);
+}
 
 void	push_swap(char **av)
 {
@@ -44,16 +44,18 @@ void	push_swap(char **av)
 		return ;
 	}
 	opti_b(&s_a, &s_b);
+	if (!is_sorted(&s_a))
+		tiny_sort(&s_a, 'A');
 	opti_a(&s_a, &s_b);
 	if (is_sorted(update_pos(&s_a)) && s_a->idx == 1)
 		return (free_all(&s_a, &s_b));
-	ft_finguin(&s_a);
+	order(&s_a);
 	free_all(&s_a, &s_b);
 }
 
 int	main(int ac, char **av)
 {
-	if (ac == 1)
+	if (ac == 1 || (av[1][0] == 0 && ac == 2))
 		return (0);
 	if (!av || !*av)
 		return (ft_putendl_fd("Error", 2), 1);

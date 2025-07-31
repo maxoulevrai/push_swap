@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:04:16 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/30 03:50:34 by root             ###   ########.fr       */
+/*   Updated: 2025/07/31 15:01:29 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ void	get_target(t_stack **s_a, t_stack **s_b)
 		p_a = *s_a;
 		while (1)
 		{
-			if (ABS(p_b->value - p_a->value) < ABS(p_b->value - best->value))
+			if (ft_abs(p_b->value - p_a->value)
+				< ft_abs(p_b->value - best->value))
 				best = p_a;
 			p_a = p_a->next;
 			if (p_a == (*s_a))

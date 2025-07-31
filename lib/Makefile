@@ -7,6 +7,7 @@ LIB_DIR = srcs/
 LIB_OBJS = ${LIB_SRCS:.c=.o}
 
 LIB_SRCS = ${LIB_DIR}ft_isalpha.c \
+			${LIB_DIR}ft_abs.c \
 			${LIB_DIR}ft_isdigit.c \
 			${LIB_DIR}ft_isalnum.c \
 			${LIB_DIR}ft_isascii.c \

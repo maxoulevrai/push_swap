@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 19:36:37 by root              #+#    #+#             */
-/*   Updated: 2025/07/30 04:09:21 by root             ###   ########.fr       */
+/*   Updated: 2025/07/31 20:04:32 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define PUSH_SWAP_H
 
 # include "lib/libft.h"
-
-# define ABS(value) ((value < 0) ? (value * -1) : value)
 
 typedef struct s_stack
 {
@@ -26,7 +24,6 @@ typedef struct s_stack
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }				t_stack;
-
 
 typedef struct s_mq
 {
@@ -79,9 +76,9 @@ void	rra_rb(t_stack **s_a, t_stack **s_b, t_stack *best);
 void	ra_rrb(t_stack **s_a, t_stack **s_b, t_stack *best);
 void	rrrr_neg(t_stack **s_a, t_stack **s_b, t_stack *best);
 void	rrrr_pos(t_stack **s_a, t_stack **s_b, t_stack *best);
-void	ft_finguin(t_stack **s_a);
+void	order(t_stack **s_a);
 
 // debug
-void check_circular(t_stack *head);
+void	check_circular(t_stack *head);
 
 #endif

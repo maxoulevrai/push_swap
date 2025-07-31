@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 12:33:52 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/30 17:22:51 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/31 14:32:17 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ long	ft_atoi(const char *nptr)
 	}
 	nbr *= sign;
 	if ((nbr > INT_MAX || nbr < INT_MIN))
-			return (0);
+		return (0);
 	return (nbr);
 }
 

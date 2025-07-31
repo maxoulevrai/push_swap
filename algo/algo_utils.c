@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 19:17:12 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/30 03:54:29 by root             ###   ########.fr       */
+/*   Updated: 2025/07/31 19:58:34 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,13 @@ int	get_cost(t_stack *p_b, t_mq *mq_a, t_mq *mq_b)
 {
 	int	cost;
 
-	cost = 0;
-	if (p_b->pos <= mq_b->med && p_b->trgt->pos <= mq_a->med)
-		cost = ABS(p_b->pos - p_b->trgt->pos);
-	else if (p_b->pos > mq_b->med && p_b->trgt->pos > mq_a->med)
-		cost = ABS((mq_b->len - p_b->pos) - (mq_a->len - p_b->trgt->pos));
-	else if (p_b->pos <= mq_b->med && p_b->trgt->pos > mq_a->med)
-		cost = p_b->pos + (mq_a->len - p_b->trgt->pos);
-	else if (p_b->pos > mq_b->med && p_b->trgt->pos <= mq_a->med)
-		cost = (mq_b->len - p_b->pos) + p_b->trgt->pos;
+	cost = p_b->pos;
+	if (p_b->pos > mq_b->med)
+		cost = mq_b->len - p_b->pos;
+	if (p_b->trgt->pos <= mq_a->med)
+		cost += p_b->trgt->pos;
+	else
+		cost += mq_a->len - p_b->trgt->pos;
 	return (cost);
 }
 
