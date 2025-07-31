@@ -6,29 +6,24 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:15:43 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/31 20:08:43 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/31 20:31:16 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	sort_insert(t_stack **s_a, t_stack **s_b, t_stack *best)
+int	get_cost(t_stack *p_b, t_mq *mq_a, t_mq *mq_b)
 {
-	t_mq	*mq_a;
-	t_mq	*mq_b;
+	int	cost;
 
-	mq_a = get_mq(s_a);
-	mq_b = get_mq(s_b);
-	if (best->pos <= mq_b->med && best->trgt->pos > mq_a->med)
-		rra_rb(s_a, s_b, best);
-	else if (best->pos > mq_b->med && best->trgt->pos <= mq_a->med)
-		ra_rrb(s_a, s_b, best);
-	else if (best->pos > mq_b->med && best->trgt->pos > mq_a->med)
-		rrrr_neg(s_a, s_b, best);
-	else if (best->pos <= mq_b->med && best->trgt->pos <= mq_a->med)
-		rrrr_pos(s_a, s_b, best);
-	free(mq_a);
-	free(mq_b);
+	cost = p_b->pos;
+	if (p_b->pos > mq_b->med)
+		cost = mq_b->len - p_b->pos;
+	if (p_b->trgt->pos <= mq_a->med)
+		cost += p_b->trgt->pos;
+	else
+		cost += mq_a->len - p_b->trgt->pos;
+	return (cost);
 }
 
 void	order(t_stack **s_a)
@@ -93,12 +88,7 @@ void	opti_a(t_stack **s_a, t_stack **s_b)
 		get_target(update_pos(s_a), update_pos(s_b));
 		mq_a = get_mq(s_a);
 		mq_b = get_mq(s_b);
-		// printf("stack A:\n");
-		// check_circular(*s_a);
-		// printf("stack B:\n");
-		// check_circular(*s_b);
 		best = find_best_move(s_b, mq_a, mq_b);
-		// printf("objet: %d cible: %d\n", best->value, best->trgt->value);
 		if (!best || !best->trgt)
 			break ;
 		sort_insert(s_a, s_b, best);

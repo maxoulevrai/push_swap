@@ -6,24 +6,11 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 17:33:02 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/31 20:04:32 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/31 20:30:00 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	check_circular(t_stack *head)
-{
-	t_stack	*p = head;
-	int	 i = 0;
-	if (!head)
-		return;
-	do {
-		printf("node value: %d (pos: %d)\n", p->value, p->pos);
-		p = p->next;
-		i++;
-	} while (p != head && i < 1000);
-}
 
 void	push_swap(char **av)
 {
