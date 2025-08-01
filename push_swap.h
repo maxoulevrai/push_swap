@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 19:36:37 by root              #+#    #+#             */
-/*   Updated: 2025/08/01 04:34:22 by root             ###   ########.fr       */
+/*   Updated: 2025/08/01 04:52:33 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	reverse_rotate(t_stack **head, char print);
 void	rrr(t_stack **s_a, t_stack **s_b);
 
 // algo
-void	opti_b(t_stack **s_a, t_stack **s_b);
-void	opti_a(t_stack **s_a, t_stack **s_b);
+void	move_to_b(t_stack **s_a, t_stack **s_b);
+void	move_to_a(t_stack **s_a, t_stack **s_b);
 void	tiny_sort(t_stack **head, char print);
 void	do_opti(t_stack **s_a, t_stack **s_b, t_stack *best, int *len);
 void	do_a_move(t_stack **s_a, t_stack *best, int *len);

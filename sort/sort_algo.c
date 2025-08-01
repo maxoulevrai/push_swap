@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:15:43 by maleca            #+#    #+#             */
-/*   Updated: 2025/08/01 04:31:14 by root             ###   ########.fr       */
+/*   Updated: 2025/08/01 04:53:33 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static t_stack	*find_best_move(t_stack **s_b, int *len)
 	}
 }
 
-void	opti_a(t_stack **s_a, t_stack **s_b)
+void	move_to_a(t_stack **s_a, t_stack **s_b)
 {
 	t_stack	*best;
 	int		len[2];
@@ -76,14 +76,14 @@ void	opti_a(t_stack **s_a, t_stack **s_b)
 	update_pos(s_a);
 }
 
-void	opti_b(t_stack **s_a, t_stack **s_b)
+void	move_to_b(t_stack **s_a, t_stack **s_b)
 {
 	t_mq	*mq;
 
 	mq = get_mq(s_a);
 	if (!mq)
 		return ;
-	while (inter(s_a, mq) && get_dbl_ll_size(s_a) > 5)
+	while (inter(s_a, mq) && get_dbl_ll_size(s_a) > 12)
 	{
 		if ((*s_a)->idx >= mq->q1 && (*s_a)->idx <= mq->med)
 		{
