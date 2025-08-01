@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:04:16 by maleca            #+#    #+#             */
-/*   Updated: 2025/08/01 03:03:12 by root             ###   ########.fr       */
+/*   Updated: 2025/08/01 03:28:02 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ t_mq	*get_mq(t_stack **head)
 {
 	t_mq	*mq;
 
-	if (!head || !*head)
-		return (NULL);
 	mq = malloc(sizeof(t_mq));
 	if (!mq)
 		return (NULL);
@@ -41,8 +39,6 @@ void	get_idx(t_stack **head)
 	t_stack		*tmp;
 	t_stack		*min;
 
-	if (!head || !*head)
-		return ;
 	size = get_dbl_ll_size(head);
 	idx = 1;
 	while (idx <= size)

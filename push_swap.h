@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 19:36:37 by root              #+#    #+#             */
-/*   Updated: 2025/07/31 23:05:56 by maleca           ###   ########.fr       */
+/*   Updated: 2025/08/01 04:34:22 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ typedef struct s_stack
 typedef struct s_mq
 {
 	int				q1;
-	int				q3;
 	int				med;
+	int				q3;
 	int				len;
 }				t_mq;
 
@@ -69,15 +69,9 @@ void	do_opti(t_stack **s_a, t_stack **s_b, t_stack *best, int *len);
 void	do_a_move(t_stack **s_a, t_stack *best, int *len);
 void	do_b_move(t_stack **s_b, t_stack *best, int *len);
 void	get_target(t_stack **s_a, t_stack **s_b);
-int		is_sorted(t_stack **head);
-int		inter(t_stack **head, t_mq *mq);
-int		get_cost(t_stack *p_b, int *len);
-t_mq	*get_mq(t_stack **head);
-t_stack	*find_best_move(t_stack **s_b, int *len);
-
 void	order(t_stack **s_a);
-
-// debug
-void	check_circular(t_stack *head);
+int		inter(t_stack **head, t_mq *mq);
+int		is_sorted(t_stack **head);
+t_mq	*get_mq(t_stack **head);
 
 #endif

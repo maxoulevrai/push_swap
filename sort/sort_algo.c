@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo.c                                             :+:      :+:    :+:   */
+/*   sort_algo.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:15:43 by maleca            #+#    #+#             */
-/*   Updated: 2025/08/01 01:52:11 by root             ###   ########.fr       */
+/*   Updated: 2025/08/01 04:31:14 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	get_cost(t_stack *p_b, int *len)
+static int	get_cost(t_stack *p_b, int *len)
 {
 	int	cost;
 
@@ -26,28 +26,7 @@ int	get_cost(t_stack *p_b, int *len)
 	return (cost);
 }
 
-void	order(t_stack **s_a)
-{
-	t_stack	*p_a;
-	int		len;
-
-	p_a = *s_a;
-	while (p_a->idx != 1)
-		p_a = p_a->next;
-	len = get_dbl_ll_size(s_a);
-	if (p_a->pos <= len / 2)
-	{
-		while (p_a->value != (*s_a)->value)
-			rotate(s_a, 'A');
-	}
-	else
-	{
-		while (p_a->value != (*s_a)->value)
-			reverse_rotate(s_a, 'A');
-	}
-}
-
-t_stack	*find_best_move(t_stack **s_b, int *len)
+static t_stack	*find_best_move(t_stack **s_b, int *len)
 {
 	t_stack	*p_b;
 	t_stack	*best;
@@ -123,4 +102,25 @@ void	opti_b(t_stack **s_a, t_stack **s_b)
 			rotate(s_b, 'B');
 	}
 	free(mq);
+}
+
+void	order(t_stack **s_a)
+{
+	t_stack	*p_a;
+	int		len;
+
+	p_a = *s_a;
+	while (p_a->idx != 1)
+		p_a = p_a->next;
+	len = get_dbl_ll_size(s_a);
+	if (p_a->pos <= len / 2)
+	{
+		while (p_a->value != (*s_a)->value)
+			rotate(s_a, 'A');
+	}
+	else
+	{
+		while (p_a->value != (*s_a)->value)
+			reverse_rotate(s_a, 'A');
+	}
 }

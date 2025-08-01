@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 19:17:12 by maleca            #+#    #+#             */
-/*   Updated: 2025/08/01 02:47:02 by root             ###   ########.fr       */
+/*   Updated: 2025/08/01 03:33:53 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	do_a_move(t_stack **s_a, t_stack *best, int *len)
 		if (best->value < best->trgt->value)
 			reverse_rotate(s_a, 'A');
 	}
-
 }
 
 void	do_b_move(t_stack **s_b, t_stack *best, int *len)
