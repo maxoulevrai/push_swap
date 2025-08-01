@@ -3,39 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:15:43 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/31 20:31:16 by maleca           ###   ########.fr       */
+/*   Updated: 2025/08/01 01:52:11 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	get_cost(t_stack *p_b, t_mq *mq_a, t_mq *mq_b)
+int	get_cost(t_stack *p_b, int *len)
 {
 	int	cost;
 
 	cost = p_b->pos;
-	if (p_b->pos > mq_b->med)
-		cost = mq_b->len - p_b->pos;
-	if (p_b->trgt->pos <= mq_a->med)
+	if (p_b->pos > len[1] / 2)
+		cost = len[1] - p_b->pos;
+	if (p_b->trgt->pos <= len[0] / 2)
 		cost += p_b->trgt->pos;
 	else
-		cost += mq_a->len - p_b->trgt->pos;
+		cost += len[0] - p_b->trgt->pos;
 	return (cost);
 }
 
 void	order(t_stack **s_a)
 {
 	t_stack	*p_a;
-	t_mq	*mq_a;
+	int		len;
 
 	p_a = *s_a;
 	while (p_a->idx != 1)
 		p_a = p_a->next;
-	mq_a = get_mq(s_a);
-	if (p_a->pos <= mq_a->med)
+	len = get_dbl_ll_size(s_a);
+	if (p_a->pos <= len / 2)
 	{
 		while (p_a->value != (*s_a)->value)
 			rotate(s_a, 'A');
@@ -45,10 +45,9 @@ void	order(t_stack **s_a)
 		while (p_a->value != (*s_a)->value)
 			reverse_rotate(s_a, 'A');
 	}
-	free(mq_a);
 }
 
-t_stack	*find_best_move(t_stack **s_b, t_mq *mq_a, t_mq *mq_b)
+t_stack	*find_best_move(t_stack **s_b, int *len)
 {
 	t_stack	*p_b;
 	t_stack	*best;
@@ -63,7 +62,7 @@ t_stack	*find_best_move(t_stack **s_b, t_mq *mq_a, t_mq *mq_b)
 	best = *s_b;
 	while (1)
 	{
-		current_cost = get_cost(p_b, mq_a, mq_b);
+		current_cost = get_cost(p_b, len);
 		if (current_cost < best_cost)
 		{
 			best_cost = current_cost;
@@ -71,27 +70,29 @@ t_stack	*find_best_move(t_stack **s_b, t_mq *mq_a, t_mq *mq_b)
 		}
 		p_b = p_b->next;
 		if (p_b == *s_b)
-			return (free(mq_a), free(mq_b), best);
+			return (best);
 	}
 }
 
 void	opti_a(t_stack **s_a, t_stack **s_b)
 {
 	t_stack	*best;
-	t_mq	*mq_a;
-	t_mq	*mq_b;
+	int		len[2];
 
 	if (!s_a || !*s_a || !s_b || !*s_b)
 		return ;
 	while (get_dbl_ll_size(s_b) > 0)
 	{
 		get_target(update_pos(s_a), update_pos(s_b));
-		mq_a = get_mq(s_a);
-		mq_b = get_mq(s_b);
-		best = find_best_move(s_b, mq_a, mq_b);
+		len[0] = get_dbl_ll_size(s_a);
+		len[1] = get_dbl_ll_size(s_b);
+		best = find_best_move(s_b, len);
 		if (!best || !best->trgt)
 			break ;
-		sort_insert(s_a, s_b, best);
+		do_opti(s_a, s_b, best, len);
+		do_a_move(s_a, best, len);
+		do_b_move(s_b, best, len);
+		push_a(s_a, s_b);
 	}
 	update_pos(s_a);
 }
@@ -103,7 +104,7 @@ void	opti_b(t_stack **s_a, t_stack **s_b)
 	mq = get_mq(s_a);
 	if (!mq)
 		return ;
-	while (inter(s_a, mq) && get_dbl_ll_size(s_a) > 10)
+	while (inter(s_a, mq) && get_dbl_ll_size(s_a) > 5)
 	{
 		if ((*s_a)->idx >= mq->q1 && (*s_a)->idx <= mq->med)
 		{

@@ -6,7 +6,7 @@
 /*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 19:36:37 by root              #+#    #+#             */
-/*   Updated: 2025/07/31 20:04:32 by maleca           ###   ########.fr       */
+/*   Updated: 2025/07/31 23:05:56 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,17 @@ void	rrr(t_stack **s_a, t_stack **s_b);
 // algo
 void	opti_b(t_stack **s_a, t_stack **s_b);
 void	opti_a(t_stack **s_a, t_stack **s_b);
-t_stack	*find_best_move(t_stack **s_b, t_mq *mq_a, t_mq *mq_b);
-int		get_cost(t_stack *p_b, t_mq *mq_a, t_mq *mq_b);
-int		inter(t_stack **head, t_mq *mq);
-t_mq	*get_mq(t_stack **head);
-void	get_target(t_stack **s_a, t_stack **s_b);
 void	tiny_sort(t_stack **head, char print);
+void	do_opti(t_stack **s_a, t_stack **s_b, t_stack *best, int *len);
+void	do_a_move(t_stack **s_a, t_stack *best, int *len);
+void	do_b_move(t_stack **s_b, t_stack *best, int *len);
+void	get_target(t_stack **s_a, t_stack **s_b);
 int		is_sorted(t_stack **head);
-void	sort_insert(t_stack **s_a, t_stack **s_b, t_stack *best);
-void	rra_rb(t_stack **s_a, t_stack **s_b, t_stack *best);
-void	ra_rrb(t_stack **s_a, t_stack **s_b, t_stack *best);
-void	rrrr_neg(t_stack **s_a, t_stack **s_b, t_stack *best);
-void	rrrr_pos(t_stack **s_a, t_stack **s_b, t_stack *best);
+int		inter(t_stack **head, t_mq *mq);
+int		get_cost(t_stack *p_b, int *len);
+t_mq	*get_mq(t_stack **head);
+t_stack	*find_best_move(t_stack **s_b, int *len);
+
 void	order(t_stack **s_a);
 
 // debug

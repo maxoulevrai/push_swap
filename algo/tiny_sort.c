@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tiny_sort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 22:11:39 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/30 03:55:28 by root             ###   ########.fr       */
+/*   Updated: 2025/07/31 21:59:57 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,37 +41,3 @@ void	tiny_sort(t_stack **head, char print)
 		rotate(head, print);
 }
 
-int	is_sorted(t_stack **head)
-{
-	t_stack	*p;
-
-	if (!head || !*head)
-		return (0);
-	p = (*head);
-	while (1)
-	{
-		if (p->value > p->next->value && p->next != (*head))
-			return (0);
-		p = p->next;
-		if (p == *head)
-			break ;
-	}
-	return (1);
-}
-
-int	inter(t_stack **head, t_mq *mq)
-{
-	t_stack	*p;
-
-	if (!(*head))
-		return (-1);
-	p = (*head);
-	while (1)
-	{
-		if (p->idx >= mq->q1 && p->idx <= mq->q3)
-			return (1);
-		p = p->next;
-		if (p == (*head))
-			return (0);
-	}
-}
