@@ -1,19 +1,18 @@
 NAME = push_swap
 
 LIB = lib/libft.a
-MOVES_DIR = utils/instructions/
 
 SRCS = main.c \
+		sort/tiny_sort.c \
+		sort/sort_utils.c \
+		sort/sort.c \
 		utils/linked_list_utils.c \
 		utils/parsing_utils.c \
 		utils/init_utils.c \
-		${MOVES_DIR}push_instructions.c \
-		${MOVES_DIR}swap_instructions.c \
-		${MOVES_DIR}rotate_instructions.c \
-		${MOVES_DIR}reverse_rotate_instructions.c \
-		algo/tiny_sort.c \
-		algo/algo_utils.c \
-		algo/algo.c \
+		utils/instructions/push_instructions.c \
+		utils/instructions/swap_instructions.c \
+		utils/instructions/rotate_instructions.c \
+		utils/instructions/reverse_rotate_instructions.c \
 
 OBJS = ${SRCS:.c=.o}
 

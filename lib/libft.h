@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 12:58:33 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/31 18:30:38 by maleca           ###   ########.fr       */
+/*   Updated: 2025/08/01 03:03:12 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t siz);
 int		ft_memcmp(const void *s1, const void *s2, size_t siz);
 long	ft_abs(long nbr);
-long	ft_atoi(const char *nptr);
+long	ft_atol(const char *nptr);
 void	free_dtab(char **dtab);
 void	ft_bzero(void *ptr, size_t n);
 void	ft_putchar_fd(char c, int fd);

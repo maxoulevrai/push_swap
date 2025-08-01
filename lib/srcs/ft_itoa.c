@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 17:15:21 by maleca            #+#    #+#             */
-/*   Updated: 2025/05/09 19:43:12 by root             ###   ########.fr       */
+/*   Updated: 2025/08/01 03:03:12 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*ft_itoa(int n)
 // 	char	*convert;
 
 // 	(void)ac;
-// 	convert = ft_itoa(atoi(av[1]));
+// 	convert = ft_itoa(atol(av[1]));
 // 	printf("%s\n", convert);
 // 	free(convert);
 // 	return (0);

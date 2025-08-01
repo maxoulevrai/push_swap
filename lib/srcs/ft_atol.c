@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 12:33:52 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/31 14:32:17 by maleca           ###   ########.fr       */
+/*   Updated: 2025/08/01 03:03:12 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-long	ft_atoi(const char *nptr)
+long	ft_atol(const char *nptr)
 {
 	size_t	i;
 	int		sign;
@@ -29,19 +29,16 @@ long	ft_atoi(const char *nptr)
 			sign *= -1;
 		i++;
 	}
-	while (nptr[i] >= '0' && nptr[i] <= '9' && nbr <= INT_MAX)
+	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		nbr = nbr * 10 + (nptr[i] - '0');
 		i++;
 	}
-	nbr *= sign;
-	if ((nbr > INT_MAX || nbr < INT_MIN))
-		return (0);
-	return (nbr);
+	return (sign * nbr);
 }
 
 // int	main(void)
 // {
-// 	printf("%ld\n", ft_atoi("-44"));
+// 	printf("%ld\n", ft_atol("-44"));
 // 	return (0);
 // }

@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 18:58:12 by maleca            #+#    #+#             */
-/*   Updated: 2025/05/09 19:43:09 by root             ###   ########.fr       */
+/*   Updated: 2025/08/01 03:03:12 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ void	ft_putnbr_fd(int n, int fd)
 // int	main(int ac, char **av)
 // {
 // 	(void)ac;
-// 	ft_putnbr_fd(atoi(av[1]), 1);
+// 	ft_putnbr_fd(atol(av[1]), 1);
 // 	return (0);
 // }

@@ -28,7 +28,7 @@ LIB_SRCS = ${LIB_DIR}ft_isalpha.c \
 			${LIB_DIR}ft_memchr.c \
 			${LIB_DIR}ft_memcmp.c \
 			${LIB_DIR}ft_strnstr.c \
-			${LIB_DIR}ft_atoi.c \
+			${LIB_DIR}ft_atol.c \
 			${LIB_DIR}ft_calloc.c \
 			${LIB_DIR}ft_strdup.c \
 			${LIB_DIR}ft_substr.c \

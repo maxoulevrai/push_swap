@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:04:16 by maleca            #+#    #+#             */
-/*   Updated: 2025/07/31 15:01:29 by maleca           ###   ########.fr       */
+/*   Updated: 2025/08/01 03:03:12 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ t_stack	*init_value(char **splited_args)
 	i = 0;
 	while (splited_args[i])
 	{
-		tmp = init_node(ft_atoi(splited_args[i++]));
+		tmp = init_node(ft_atol(splited_args[i++]));
 		if (!tmp)
 			return (free_dbl_ll(&head), NULL);
 		tmp->pos = pos--;

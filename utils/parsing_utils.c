@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 18:04:50 by root              #+#    #+#             */
-/*   Updated: 2025/07/31 20:17:18 by maleca           ###   ########.fr       */
+/*   Updated: 2025/08/01 03:03:12 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	check_dbl(char **splited_args)
 		j = i + 1;
 		while (splited_args[j])
 		{
-			if (ft_atoi(splited_args[i]) == ft_atoi(splited_args[j]))
+			if (ft_atol(splited_args[i]) == ft_atol(splited_args[j]))
 				return (0);
 			j++;
 		}
@@ -52,7 +52,7 @@ static int	is_valid(char **av)
 				&& av[i][j] != '-' && av[i][j] != '+'))
 				return (0);
 		}
-		if (ft_atoi(av[i]) == 0 && av[i] != 0)
+		if (ft_atol(av[i]) > INT_MAX || ft_atol(av[i]) < INT_MIN)
 			return (0);
 	}
 	return (1);
