@@ -1,5 +1,13 @@
 NAME = push_swap
 
+RED				= \e[31m
+GREEN			= \e[32m
+YELLOW			= \e[33m
+BLUE			= \e[34m
+MAGENTA			= \e[35m
+CYAN			= \e[36m
+RESET			= \e[m
+
 LIB = lib/libft.a
 
 SRCS = main.c \
@@ -52,6 +60,29 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+test: $(NAME)
+	@echo "$(BLUE)--- Testing push_swap ---$(NO_COLOR)"
+	@echo "$(BLUE)Test with 5 numbers: $(NO_COLOR)"
+	@./$(NAME) 3 1 2 5 4
+	@echo ""
+	@echo "$(BLUE)Test with 100 random numbers (operations count):$(NO_COLOR)"
+	@ARG=$$(shuf -i 0-99 -n 100 | tr '\n' ' '); \
+	./$(NAME) "$$ARG" | grep -v "DEBUG" | wc -l
+	@echo ""
+	@echo "$(BLUE)Test with 100 random numbers and checker:$(NO_COLOR)"
+	@ARG=$$(shuf -i 0-99 -n 100 | tr '\n' ' '); \
+	./$(NAME) "$$ARG" | ./checker_linux "$$ARG"
+	@echo ""
+	@echo "$(BLUE)Test with 500 random numbers (operations count):$(NO_COLOR)"
+	@ARG=$$(shuf -i 0-499 -n 500 | tr '\n' ' '); \
+	./$(NAME) "$$ARG" | grep -v "DEBUG" | wc -l
+	@echo ""
+	@echo "$(BLUE)Test with 500 random numbers and checker:$(NO_COLOR)"
+	@ARG=$$(shuf -i 0-499 -n 500 | tr '\n' ' '); \
+	./$(NAME) "$$ARG" | ./checker_linux "$$ARG"
+	@echo ""
+	@echo "$(BLUE)--- Tests complete ---$(NO_COLOR)"
+
+.PHONY: all clean fclean re test
 
 -include $(DEPS)

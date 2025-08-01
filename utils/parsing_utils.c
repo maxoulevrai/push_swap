@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 18:04:50 by root              #+#    #+#             */
-/*   Updated: 2025/08/01 03:03:12 by root             ###   ########.fr       */
+/*   Updated: 2025/08/01 16:42:01 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ t_stack	*parse(char **av)
 		return (free_dtab(splited_args), NULL);
 	s_a = init_value(splited_args);
 	if (!s_a)
-		return (NULL);
+		return (free_dtab(splited_args), NULL);
 	free_dtab(splited_args);
 	return (s_a);
 }
